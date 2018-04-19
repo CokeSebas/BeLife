@@ -1,0 +1,25 @@
+﻿<Window x:Class="Inicio.addCliente"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Inicio"
+        mc:Ignorable="d"
+        Title="Crear Cliente" Height="450" Width="428">
+    <Grid HorizontalAlignment="Left" Height="418" VerticalAlignment="Top" Width="418">
+        <Label Content="Rut Cliente :" HorizontalAlignment="Left" Margin="38,27,0,0" VerticalAlignment="Top"/>
+        <Label Content="Nombre Cliente:" HorizontalAlignment="Left" Margin="38,80,0,0" VerticalAlignment="Top"/>
+        <Label Content="Apellido Cliente" HorizontalAlignment="Left" Margin="38,131,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="202,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Name="txtRutCli"/>
+        <Label Content="Fecha Nacimiento:" HorizontalAlignment="Left" Margin="38,185,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="202,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Name="txtNombCli"/>
+        <TextBox HorizontalAlignment="Left" Margin="202,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Name="txtApCli" Width="120"/>
+        <DatePicker x:Name="dtpFechaNacCli" HorizontalAlignment="Left" Margin="202,185,0,0" VerticalAlignment="Top" SelectedDateFormat="Short"/>
+        <Label Content="Sexo:" HorizontalAlignment="Left" Margin="38,235,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cbbSexo" HorizontalAlignment="Left" Margin="202,238,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnGuardarCli" Content="Guardar" HorizontalAlignment="Left" Margin="38,353,0,0" VerticalAlignment="Top" Width="75" Click="btnGuardarCli_Click"/>
+        <Button x:Name="btnLimpiarCli" Content="Limpiar" HorizontalAlignment="Left" Margin="202,353,0,0" VerticalAlignment="Top" Width="75" Click="btnLimpiarCli_Click"/>
+        <Label Content="Estado Civil:" HorizontalAlignment="Left" Margin="38,293,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cbbEC" HorizontalAlignment="Left" Margin="202,296,0,0" VerticalAlignment="Top" Width="120"/>
+    </Grid>
+</Window>

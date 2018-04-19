@@ -1,0 +1,116 @@
+﻿<Window x:Class="Inicio.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Inicio"
+        mc:Ignorable="d"
+        Title="BeLife" Height="600" Width="640">
+
+    <DockPanel Margin="0,0,0,0" RenderTransformOrigin="0.282,0.415">
+        <Menu DockPanel.Dock="Top" Height="35" Margin="0,0,0,535" >
+            <MenuItem Header="_Clientes" Name="mnCliente">
+                <MenuItem.Icon>
+                    <Image Source="Imagenes\Clientes.png" />
+                </MenuItem.Icon>
+                <MenuItem Header="_Agregar Cliente" Name="mnAgrCliente" Click="mnAgregarCliente">
+                    <MenuItem.Icon>
+                        <Image Source="Imagenes/ClientAdd.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Buscar Cliente" Name="mnBusCliente" Click="mnEditarCliente">
+                    <MenuItem.Icon>
+                        <Image Source="Imagenes/ClientSearch.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Eliminar Cliente" Name="mnElCliente" Click="mnEliminarCliente">
+                    <MenuItem.Icon>
+                        <Image Source="Imagenes\ClientDelete.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Listar Clientes" Name="mnListClientes" Click="mnListCliente">
+                    <MenuItem.Icon>
+                        <Image Source="Imagenes\ClientSearch.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Contratos" Name="mnContratos">
+                <MenuItem.Icon>
+                    <Image Source="Imagenes\Contratos.png" />
+                </MenuItem.Icon>
+                <MenuItem Header="_Agregar Contrato" Name="mnAgrContratos" Click="mnAgregarContrato">
+                    <MenuItem.Icon>
+                        <Image Source="Imagenes\ContractAdd.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Buscar Contrato" Name="mnBusContratos" Click="mnEditarContrato">
+                    <MenuItem.Icon>
+                        <Image Source="Imagenes\ContractSearch.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Terminar Contrato" Name="mnTerContratos" Click="mnTerminarContrato">
+                    <MenuItem.Icon>
+                        <Image Source="Imagenes\ContractDelete.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Eliminar Contrato" Name="mnEliContratos" Click="mnEliminarContrato">
+                    <MenuItem.Icon>
+                        <Image Source="Imagenes\ContractDelete.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Listar Contrato" Name="mnLisContratos" Click="mnListarContrato">
+                    <MenuItem.Icon>
+                        <Image Source="Imagenes\DataSearch.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+            </MenuItem>
+            <MenuItem Header="_Menu" Name="mnMenu">
+                <MenuItem Header="_Salir" Name="mnMenuSalir" Click="mnSalir"></MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <Grid>
+            <Image  Margin="3,-539,1.6,9.8" Name="image1"  Stretch="Uniform" 
+           Source="Imagenes/Logo BeLife.png" />
+
+
+
+        </Grid>
+
+    </DockPanel>
+
+
+
+    <!--<Button Name="A" Click="mnAgregarCliente">
+        <DockPanel>
+            <Image Source="E:\DUOC\SEMESTRE ESPECIAL\Desarrollo de Software\desarrollo software\Examen 1\BeLife\Inicio\Imagenes\ClientAdd.png" Height="240" Width="240" />
+            <TextBlock>
+            </TextBlock>
+        </DockPanel>
+    </Button>-->
+
+    <!--<Button Name="test" Click="ConectarBD">
+        <DockPanel>
+            <TextBlock>
+                Conectar DB
+            </TextBlock>
+        </DockPanel>
+    </Button>-->
+
+    <!--<DockPanel>
+        <Button Name="Conectar" Click="ConectarBD">
+            <TextBlock>
+                Conectar DB
+            </TextBlock>
+        </Button>
+
+        <Button Name="btnAddCliente" Margin="0,0,0,0" Click="mnAgregarCliente">
+            <Image Source="E:\DUOC\SEMESTRE ESPECIAL\Desarrollo de Software\desarrollo software\Examen 1\BeLife\Inicio\Imagenes\ClientAdd.png" Height="240" Width="240" />
+        </Button>
+        <Button Name="btnUpdCliente" Click="mnAgregarCliente">
+            <Image Source="E:\DUOC\SEMESTRE ESPECIAL\Desarrollo de Software\desarrollo software\Examen 1\BeLife\Inicio\Imagenes\ClientSearch.png" Height="240" Width="240" />
+        </Button>
+    </DockPanel>-->
+
+</Window>

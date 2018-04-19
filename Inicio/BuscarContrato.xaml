@@ -1,0 +1,25 @@
+﻿<Window x:Class="Inicio.BuscarContrato"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Inicio"
+        mc:Ignorable="d"
+        Title="Seguros BeLife - Contratos" Height="450" Width="790.657"
+        Icon="Imagenes/ContractAdd.png">
+    <Grid>
+        <Button Content="Buscar" HorizontalAlignment="Left" Margin="430,39,0,0" VerticalAlignment="Top" Width="75"  Height="25"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="175,39,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="171"/>
+        <Label Content="Numero de Contrato:" HorizontalAlignment="Left" Margin="27,39,0,0" VerticalAlignment="Top"/>
+        <Separator HorizontalAlignment="Left" Height="6" Margin="27,87,0,0" VerticalAlignment="Top" Width="732" IsHitTestVisible="True"/>
+        <Label Content="Rut Titular:" HorizontalAlignment="Left" Margin="27,115,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="99,115,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="120"/>
+        <Button Content="Listar Contratos" HorizontalAlignment="Left" Margin="589,39,0,0" VerticalAlignment="Top" Width="103" Height="23"/>
+        <Label Content="Nombre Titular:" HorizontalAlignment="Left" Margin="239,112,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="337,115,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="148"/>
+        <Label Content="Apellido Titular:" HorizontalAlignment="Left" Margin="507,111,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="605,112,0,0" TextWrapping="Wrap" Text=" " VerticalAlignment="Top" Width="154"/>
+        <Separator HorizontalAlignment="Left" Height="6" Margin="27,165,0,0" VerticalAlignment="Top" Width="732" IsHitTestVisible="True"/>
+
+    </Grid>
+</Window>
