@@ -17,8 +17,8 @@
         <DatePicker x:Name="dtpFechaNacCli" HorizontalAlignment="Left" Margin="202,185,0,0" VerticalAlignment="Top" SelectedDateFormat="Short"/>
         <Label Content="Sexo:" HorizontalAlignment="Left" Margin="38,235,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cbbSexo" HorizontalAlignment="Left" Margin="202,238,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnEditarCli" Content="Editar" HorizontalAlignment="Left" Margin="393,86,0,0" VerticalAlignment="Top" Width="75" Click="btnEditarCli_Click" />
-        <Button x:Name="btnLimpiarCli" Content="Limpiar" HorizontalAlignment="Left" Margin="393,157,0,0" VerticalAlignment="Top" Width="75" Click="btnLimpiarCli_Click" />
+        <Button x:Name="btnEditarCli" Content="Editar" HorizontalAlignment="Left" Margin="393,170,0,0" VerticalAlignment="Top" Width="75" Click="btnEditarCli_Click" />
+        <Button x:Name="btnLimpiarCli" Content="Limpiar" HorizontalAlignment="Left" Margin="393,91,0,0" VerticalAlignment="Top" Width="75" Click="btnLimpiarCli_Click" />
         <Label Content="Estado Civil:" HorizontalAlignment="Left" Margin="38,293,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cbbEC" HorizontalAlignment="Left" Margin="202,296,0,0" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="btnBuscarCli" Content="Buscar" HorizontalAlignment="Left" Margin="393,27,0,0" VerticalAlignment="Top" Width="75" Click="btnBuscarCli_Click"/>
