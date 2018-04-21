@@ -25,7 +25,14 @@ namespace LibbClas
 
             set
             {
-                _rut = value;
+                if (value.Length == 10)
+                {
+                    _rut = value;
+                }
+                else
+                {
+                    throw new Exception("Largo rut 10");
+                }
             }
         }
 
@@ -118,7 +125,7 @@ namespace LibbClas
         }
 
         public bool editarCliente(string rutB){
-            //if (validar("Cliente", rutB) == true){
+            if (validar("Cliente", rutB) == false){
                 string campos = " Nombres = '"+Nombre+"', Apellidos ='"+Apellido+"', FechaNacimiento = convert(date,'"+FechaNacimiento+"'), idSexo = "+Sexo+", idEstadoCivil ="+EstadoCivil;
                 string condicion = " RutCliente = '" + Rut+"';";
                 bool edita = conec.actualizar("Cliente", campos, condicion);
@@ -127,9 +134,10 @@ namespace LibbClas
                 }else{
                     return edita;
                 }
-            /*}else{
+            }else{
                 return false;
-            }*/
+            }
+            //Retorna true si el cliente fue editado, de lo contrario retorna false
         }
 
         public bool eliminarCliente(string rutE)

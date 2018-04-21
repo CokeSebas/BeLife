@@ -18,8 +18,8 @@ namespace LibbClas
         private string _fechaFinVigencia;
         private string _vigente;
         private string _declaracionSalud;
-        private int _primaAnual;
-        private int _primaMensual;
+        private string _primaAnual;
+        private string _primaMensual;
         private string _observaciones;
 
         public string NumeroContrato
@@ -126,7 +126,7 @@ namespace LibbClas
             }
         }
 
-        public int PrimaAnual
+        public string PrimaAnual
         {
             get
             {
@@ -139,7 +139,7 @@ namespace LibbClas
             }
         }
 
-        public int PrimaMensual
+        public string PrimaMensual
         {
             get
             {
@@ -167,7 +167,7 @@ namespace LibbClas
 
         public bool agregarContrato(){
 
-            string sql = "INSERT INTO Contrato VALUES ('"+NumeroContrato+ "', GETDATE(), '" + RutCliente+ "',(SELECT idPlan FROM [Plan] WHERE Nombre = '" + CodigoPlan + "'), convert(date, '" + FechaInicioVigencia+"'), '', "+Vigente+", "+DeclaracionSalud+","+PrimaAnual+","+PrimaMensual+",'"+Observaciones+"');";
+            string sql = "INSERT INTO Contrato VALUES ('"+NumeroContrato+ "', GETDATE(), '" + RutCliente+ "',(SELECT idPlan FROM [Plan] WHERE Nombre = '" + CodigoPlan + "'), convert(date, '" + FechaInicioVigencia+"'), '', "+Vigente+", "+DeclaracionSalud+","+PrimaAnual.Replace(",",".")+","+PrimaMensual.Replace(",", ".") + ",'"+Observaciones+"');";
 
             bool guarda = objConec.insertar(sql);
 

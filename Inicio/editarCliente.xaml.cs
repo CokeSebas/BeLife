@@ -97,17 +97,22 @@ namespace Inicio
             }
         }
 
-        private void btnBuscarCli_Click(object sender, RoutedEventArgs e){
+        private void btnBuscarCli_Click(object sender, RoutedEventArgs e) {
             string rut = txtRutCli.Text;
-
             string[] datos;
-            
-            datos = conec.getDatosCliente(rut);
-            txtNombCli.Text = datos[0];
-            txtApCli.Text = datos[1];
-            dtpFechaNacCli.DisplayDate = Convert.ToDateTime(datos[2]);
-            cbbSexo.SelectedIndex = int.Parse(datos[3]);
-            cbbEC.SelectedIndex = int.Parse(datos[4]);
+            bool valida = objCli.validar("Cliente", rut);
+            if (valida == false){
+                datos = conec.getDatosCliente(rut);
+                txtNombCli.Text = datos[0];
+                txtApCli.Text = datos[1];
+                dtpFechaNacCli.DisplayDate = Convert.ToDateTime(datos[2]);
+                cbbSexo.SelectedIndex = int.Parse(datos[3]);
+                cbbEC.SelectedIndex = int.Parse(datos[4]);
+            }
+            else{
+                MessageBox.Show("El RUT " + rut + " no ha sido ingresado");
+            }
+       
         }
 
         private void btnEliminarCli_Click(object sender, RoutedEventArgs e)
@@ -118,7 +123,7 @@ namespace Inicio
 
 
             elimina = objCli.eliminarCliente(rut);
-            if (elimina == true)
+            if (elimina == false)
             {
                 MessageBox.Show("Cliente Eliminado");
                 limpiar();

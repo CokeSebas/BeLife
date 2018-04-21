@@ -5,24 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Inicio"
         mc:Ignorable="d"
-        Title="Crear Contrato" Height="600" Width="519.2">
-    <Grid HorizontalAlignment="Left" Width="509" Margin="0,0,0,0.4">
-        <Button x:Name="btnGuardarCont" Content="Guardar Contrato" HorizontalAlignment="Left" Margin="51,493,0,0" VerticalAlignment="Top" Width="120" Height="35" Click="btnGuardarCont_Click" />
-        <Label x:Name="label4" Content="Fecha Inicio Vigencia" HorizontalAlignment="Left" Margin="51,151,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label7" Content="Declaracion de Salud" HorizontalAlignment="Left" Margin="52,210,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label8" Content="Prima Anual" HorizontalAlignment="Left" Margin="52,270,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label9" Content="Prima mensual" HorizontalAlignment="Left" Margin="52,328,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.057,0.447"/>
-        <Label x:Name="label10" Content="Plan" HorizontalAlignment="Left" Margin="52,93,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.054,0.45"/>
-        <TextBox x:Name="txtPrimaAnu" HorizontalAlignment="Left" Height="23" Margin="226,274,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="txtPrimaMen" HorizontalAlignment="Left" Height="23" Margin="226,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="cbbPlan" HorizontalAlignment="Left" Margin="227,93,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnListarCon" Content="Listar Contrato" HorizontalAlignment="Left" Margin="345,493,0,0" VerticalAlignment="Top" Width="94" Height="35"/>
-        <DatePicker x:Name="dtpFechaInicio" HorizontalAlignment="Left" Margin="226,151,0,0" VerticalAlignment="Top"/>
+        Title="Crear Contrato" Height="725.6" Width="550.4">
+    <Grid HorizontalAlignment="Left" Width="540">
+        <Button x:Name="btnGuardarCont" Content="Guardar Contrato" HorizontalAlignment="Left" Margin="51,607,0,0" VerticalAlignment="Top" Width="120" Height="35" Click="btnGuardarCont_Click" />
+        <Label x:Name="label4" Content="Fecha Inicio Vigencia" HorizontalAlignment="Left" Margin="51,242,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label7" Content="Declaracion de Salud" HorizontalAlignment="Left" Margin="52,301,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label8" Content="Prima Anual" HorizontalAlignment="Left" Margin="52,361,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label9" Content="Prima Mensual" HorizontalAlignment="Left" Margin="52,419,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.057,0.447"/>
+        <Label x:Name="label10" Content="Plan" HorizontalAlignment="Left" Margin="53,144,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.054,0.45"/>
+        <TextBox x:Name="txtPrimaAnu" HorizontalAlignment="Left" Height="23" Margin="193,365,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <TextBox x:Name="txtPrimaMen" HorizontalAlignment="Left" Height="23" Margin="193,421,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <ComboBox x:Name="cbbPlan" HorizontalAlignment="Left" Margin="195,144,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbbPlan_SelectionChanged"/>
+        <Button x:Name="btnListarCon" Content="Listar Contrato" HorizontalAlignment="Left" Margin="345,607,0,0" VerticalAlignment="Top" Width="94" Height="35"/>
+        <DatePicker x:Name="dtpFechaInicio" HorizontalAlignment="Left" Margin="193,242,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label3_Copy" Content="Rut Cliente" HorizontalAlignment="Left" Margin="51,28,0,0" VerticalAlignment="Top" Width="87"/>
-        <TextBox x:Name="txtRutCont" HorizontalAlignment="Left" Height="23" Margin="226,32,0,0" TextWrapping="Wrap" Text="Ingrese Rut" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="cbbSalud" HorizontalAlignment="Left" Margin="226,213,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnLimpiar" Content="Limpiar" HorizontalAlignment="Left" Margin="226,493,0,0" VerticalAlignment="Top" Width="88" Height="35"/>
-        <Label Content="Observaciones" HorizontalAlignment="Left" Margin="52,385,0,0" VerticalAlignment="Top" Width="88"/>
-        <TextBox x:Name="txtObsv" HorizontalAlignment="Left" Height="74" Margin="227,397,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
+        <TextBox x:Name="txtRutCont" HorizontalAlignment="Left" Height="23" Margin="193,32,0,0" TextWrapping="Wrap" Text="Ingrese Rut" VerticalAlignment="Top" Width="120" />
+        <ComboBox x:Name="cbbSalud" HorizontalAlignment="Left" Margin="193,304,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnLimpiar" Content="Limpiar" HorizontalAlignment="Left" Margin="226,607,0,0" VerticalAlignment="Top" Width="88" Height="35"/>
+        <Label Content="Observaciones" HorizontalAlignment="Left" Margin="52,476,0,0" VerticalAlignment="Top" Width="88"/>
+        <TextBox x:Name="txtObsv" HorizontalAlignment="Left" Height="89" Margin="194,488,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="171"/>
+        <Label Content="Poliza" HorizontalAlignment="Left" Margin="53,194,0,0" VerticalAlignment="Top" Width="86"/>
+        <TextBox x:Name="txtPoliza" HorizontalAlignment="Left" Height="23" Margin="194,194,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <Label Content="Nombre Cliente" HorizontalAlignment="Left" Margin="52,73,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtNombreCliCon" HorizontalAlignment="Left" Height="23" Margin="195,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <Button x:Name="btnVerDatos" Content="Ver Datos Cliente" HorizontalAlignment="Left" Margin="364,31,0,0" VerticalAlignment="Top" Width="121" Click="btnVerDatos_Click"/>
     </Grid>
 </Window>

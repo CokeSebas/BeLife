@@ -39,30 +39,40 @@ namespace Inicio
             limpiar();
         }
 
-        private void btnGuardarCli_Click(object sender, RoutedEventArgs e)
-        {
-            bool guarda = false;
-            string nombre = txtNombCli.Text;
-            string apellido = txtApCli.Text;
-            string rut = txtRutCli.Text;
-            DateTime fechaC = dtpFechaNacCli.SelectedDate.Value;
-            string fecNac = fechaC.Year.ToString()+"-"+fechaC.Month.ToString()+"-"+fechaC.Day.ToString();
-            string sexo = cbbSexo.SelectedIndex.ToString();
-            string estadoCi = cbbEC.SelectedIndex.ToString();
-            objCli.Rut = rut;
-            objCli.Nombre = nombre;
-            objCli.Apellido = apellido;
-            objCli.FechaNacimiento = fecNac;
-            objCli.EstadoCivil = estadoCi;
-            objCli.Sexo = sexo;
-            
-            guarda = objCli.guardarCliente();
-            if (guarda == true){
-                MessageBox.Show("Cliente guardado");
-                limpiar();
-            }else{
-                MessageBox.Show("Rut ya esta ingresado en la Base de Datos");
+        private void btnGuardarCli_Click(object sender, RoutedEventArgs e){
+            try{
+                bool guarda = false;
+                string nombre = txtNombCli.Text;
+                string apellido = txtApCli.Text;
+                string rut = txtRutCli.Text;
+                DateTime fechaC = dtpFechaNacCli.SelectedDate.Value;
+                string fecNac = fechaC.Year.ToString() + "-" + fechaC.Month.ToString() + "-" + fechaC.Day.ToString();
+                string sexo = cbbSexo.SelectedIndex.ToString();
+                string estadoCi = cbbEC.SelectedIndex.ToString();
+                objCli.Rut = rut;
+                objCli.Nombre = nombre;
+                objCli.Apellido = apellido;
+                objCli.FechaNacimiento = fecNac;
+                objCli.EstadoCivil = estadoCi;
+                objCli.Sexo = sexo;
+
+                guarda = objCli.guardarCliente();
+                if (guarda == true)
+                {
+                    MessageBox.Show("Cliente guardado");
+                    limpiar();
+                }
+                else
+                {
+                    MessageBox.Show("Rut ya esta ingresado en la Base de Datos");
+                }
             }
+            catch (Exception error)
+            {
+
+                MessageBox.Show(error.Message);
+            }
+            
         }
 
         public void limpiar()

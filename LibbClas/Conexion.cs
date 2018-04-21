@@ -21,12 +21,12 @@ namespace LibbClas
         private List<Contrato> contratos = new List<Contrato>();
 
         //se conecta con sqlserver
-        private void conectar(){
+        private void conectar() {
             cn = new SqlConnection(cadena);
         }
 
         //abre la conexion a la BD
-        public void abrirConexion(){
+        public void abrirConexion() {
             conectar();
             cn.Open();
         }
@@ -61,33 +61,33 @@ namespace LibbClas
         }
 
         //actualizar datos, Funciona
-        public bool actualizar(string tabla, string campos, string condicion){
+        public bool actualizar(string tabla, string campos, string condicion) {
             abrirConexion();
-            string sql = "UPDATE "+tabla + " SET "+campos+" WHERE "+condicion;
+            string sql = "UPDATE " + tabla + " SET " + campos + " WHERE " + condicion;
             comando = new SqlCommand(sql, cn);
             int i = comando.ExecuteNonQuery();
             cerraConexion();
-            if (i>0){
+            if (i > 0) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         }
 
         //traer datos, no lo uso
-        public DataTable consultar2(string tabla){
+        public DataTable consultar2(string tabla) {
             abrirConexion();
-            string sql = "SELECT * FROM "+tabla;
+            string sql = "SELECT * FROM " + tabla;
             da = new SqlDataAdapter(sql, cn);
             DataSet dts = new DataSet();
-            da.Fill(dts,tabla);
+            da.Fill(dts, tabla);
             DataTable dt = new DataTable();
             dt = dts.Tables[tabla];
             return dt;
         }
 
         //trae datos para llenar combobox,funciona correcto
-        public string[] listSelec(string tabla){
+        public string[] listSelec(string tabla) {
             string[] listaSelec;
             int x = 0;
             listaSelec = new String[1];
@@ -96,9 +96,9 @@ namespace LibbClas
             string sql1 = "SELECT COUNT(*) as count FROM " + tabla;
             comando = new SqlCommand(sql1, cn);
             registros = comando.ExecuteReader();
-            
-            if (registros.Read()){
-                
+
+            if (registros.Read()) {
+
                 listaSelec = new string[int.Parse(registros["count"].ToString())];
                 cerraConexion();
                 string sql = "SELECT Descripcion FROM " + tabla;
@@ -145,7 +145,7 @@ namespace LibbClas
             return listaSelec;
         }
 
-        public string[] listRutContrato(){
+        public string[] listRutContrato() {
             string[] listaSelec;
             int x = 0;
             listaSelec = new String[1];
@@ -155,7 +155,7 @@ namespace LibbClas
             comando = new SqlCommand(sql1, cn);
             registros = comando.ExecuteReader();
 
-            if (registros.Read()){
+            if (registros.Read()) {
                 listaSelec = new string[int.Parse(registros["count"].ToString())];
                 cerraConexion();
                 string sql = "SELECT DISTINCT RutCliente FROM Contrato";
@@ -163,7 +163,7 @@ namespace LibbClas
                 comando = new SqlCommand(sql, cn);
                 registros = comando.ExecuteReader();
 
-                while (registros.Read()){
+                while (registros.Read()) {
                     listaSelec[x] = registros["RutCliente"].ToString();
                     x++;
                 }
@@ -178,7 +178,7 @@ namespace LibbClas
             listaSelec = new String[1];
             abrirConexion();
 
-            string sql1 = "SELECT COUNT(*) as count FROM Contrato WHERE RutCliente = '"+rut+"';";
+            string sql1 = "SELECT COUNT(*) as count FROM Contrato WHERE RutCliente = '" + rut + "';";
             comando = new SqlCommand(sql1, cn);
             registros = comando.ExecuteReader();
 
@@ -200,7 +200,7 @@ namespace LibbClas
             return listaSelec;
         }
 
-        public string[] listPlan(){
+        public string[] listPlan() {
             string[] listaSelec;
             int x = 0;
             listaSelec = new String[1];
@@ -260,44 +260,46 @@ namespace LibbClas
         }
 
         //validar existe, funciona correcto
-        public bool validar(string tabla, string condicion){
+        public bool validar(string tabla, string condicion) {
             abrirConexion();
-            string sql = "SELECT COUNT(*) AS count FROM " + tabla+ " WHERE "+condicion;
+            string sql = "SELECT COUNT(*) AS count FROM " + tabla + " WHERE " + condicion;
             comando = new SqlCommand(sql, cn);
             registros = comando.ExecuteReader();
-            if (registros.Read()){
-                if (int.Parse(registros["count"].ToString()) == 0){
+            if (registros.Read()) {
+                if (int.Parse(registros["count"].ToString()) == 0) {
                     return true;
-                }else{
+                } else {
                     return false;
                 }
-            }else{
+            } else {
                 return false;
             }
+            //retorna true si se puede guardar el cliente.
+            //retorna false si el cliente ya esta ingresado.
         }
 
         //insertar, funciona correcto
-        public bool insertar(string sql){
+        public bool insertar(string sql) {
             abrirConexion();
             comando = new SqlCommand(sql, cn);
             int i = comando.ExecuteNonQuery();
             cerraConexion();
-            if (i>0){
+            if (i > 0) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         }
 
-        public string[] getDatosCliente(string rut){
+        public string[] getDatosCliente(string rut) {
             string[] datos = new string[5];
 
-            string sql = "SELECT * FROM cliente WHERE rutCliente = '" + rut+ "';";
+            string sql = "SELECT * FROM cliente WHERE rutCliente = '" + rut + "';";
             abrirConexion();
             comando = new SqlCommand(sql, cn);
             registros = comando.ExecuteReader();
-            while (registros.Read()){
-                
+            while (registros.Read()) {
+
                 datos[0] = registros["Nombres"].ToString();
                 datos[1] = registros["Apellidos"].ToString();
                 datos[2] = registros["FechaNacimiento"].ToString();
@@ -311,7 +313,7 @@ namespace LibbClas
         {
             string[] datos = new string[7];
 
-            string sql = "SELECT * FROM Contrato WHERE Numero = '" + numeroCon + "' AND RutCliente = '"+rutCliente+"';";
+            string sql = "SELECT * FROM Contrato WHERE Numero = '" + numeroCon + "' AND RutCliente = '" + rutCliente + "';";
             abrirConexion();
             comando = new SqlCommand(sql, cn);
             registros = comando.ExecuteReader();
@@ -329,14 +331,14 @@ namespace LibbClas
             return datos;
         }
 
-        public List<Cliente> ListarClientes(){
+        public List<Cliente> ListarClientes() {
             string sql = "SELECT * FROM Cliente";
             abrirConexion();
             comando = new SqlCommand(sql, cn);
             registros = comando.ExecuteReader();
 
-            while (registros.Read()){
-                Cliente objC = new Cliente();    
+            while (registros.Read()) {
+                Cliente objC = new Cliente();
                 string sexo, estadoCivil;
 
                 objC.Rut = registros["RutCliente"].ToString();
@@ -345,19 +347,19 @@ namespace LibbClas
                 objC.FechaNacimiento = registros[3].ToString();
                 sexo = registros[4].ToString();
                 estadoCivil = registros[5].ToString();
-                if (sexo == "1"){
+                if (sexo == "1") {
                     objC.Sexo = "Masculino";
-                }else if (sexo == "2"){
-                    objC.Sexo = "Femenino";    
+                } else if (sexo == "2") {
+                    objC.Sexo = "Femenino";
                 }
 
-                if (estadoCivil == "1"){
+                if (estadoCivil == "1") {
                     objC.EstadoCivil = "Soltero";
-                }else if(estadoCivil == "2"){
+                } else if (estadoCivil == "2") {
                     objC.EstadoCivil = "Casado";
-                }else if (estadoCivil == "3"){
+                } else if (estadoCivil == "3") {
                     objC.EstadoCivil = "Divorciado";
-                }else if (estadoCivil == "4"){
+                } else if (estadoCivil == "4") {
                     objC.EstadoCivil = "Viudo";
                 }
 
@@ -366,13 +368,13 @@ namespace LibbClas
             return clientes;
         }
 
-        public List<Contrato> ListarContratos(){
+        public List<Contrato> ListarContratos() {
             string sql = "SELECT * FROM Contrato";
             abrirConexion();
             comando = new SqlCommand(sql, cn);
             registros = comando.ExecuteReader();
 
-            while (registros.Read()){
+            while (registros.Read()) {
                 Contrato objCont = new Contrato();
                 string vigente, declaracionSalud;
 
@@ -385,20 +387,20 @@ namespace LibbClas
 
                 vigente = registros[6].ToString();
                 declaracionSalud = registros[7].ToString();
-                if (vigente == "True"){
+                if (vigente == "True") {
                     objCont.Vigente = "Vigente";
-                }else if (vigente == "False"){
-                    objCont.Vigente= "Vencido";
+                } else if (vigente == "False") {
+                    objCont.Vigente = "Vencido";
                 }
 
-                if (declaracionSalud == "True"){
+                if (declaracionSalud == "True") {
                     objCont.DeclaracionSalud = "Presenta";
-                }else if (declaracionSalud == "False"){
-                    objCont.DeclaracionSalud= "No Presenta";
+                } else if (declaracionSalud == "False") {
+                    objCont.DeclaracionSalud = "No Presenta";
                 }
 
-                objCont.PrimaAnual = int.Parse(registros[8].ToString());
-                objCont.PrimaMensual = int.Parse(registros[9].ToString());
+                objCont.PrimaAnual = registros[8].ToString();
+                objCont.PrimaMensual = registros[9].ToString();
                 objCont.Observaciones = registros[10].ToString();
 
                 contratos.Add(objCont);
@@ -406,6 +408,21 @@ namespace LibbClas
             return contratos;
         }
 
+
+        public string[] datosPoliza(string nombrePlan)
+        {
+            string[] datos = new string[2];
+            string sql = "SELECT PolizaActual, PrimaBase FROM [Plan] WHERE Nombre = '" + nombrePlan + "';";
+            abrirConexion();
+            comando = new SqlCommand(sql, cn);
+            registros = comando.ExecuteReader();
+            if (registros.Read()){
+                datos[0] = registros[0].ToString();
+                datos[1] = registros[1].ToString();
+            }
+            return datos;
+
+        }
         /*SqlConnection conexion = new SqlConnection("Server=localhost\\SQLEXPRESS;Database=BeLife;Trusted_Connection=True;");
         conexion.Open();
            conexion.Close();*/

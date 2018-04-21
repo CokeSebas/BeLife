@@ -22,6 +22,60 @@ namespace Inicio
     {
         public Conexion conec = new Conexion();
         public Contrato objCont = new Contrato();
+        public Cliente objCli = new Cliente();
+        private int _edad;
+        private int _estadoC;
+        private int _sexo;
+        private double _primaBase;
+
+        public int Edad{
+            get{
+                return _edad;
+            }
+
+            set{
+                _edad = value;
+            }
+        }
+
+        public int EstadoC
+        {
+            get
+            {
+                return _estadoC;
+            }
+
+            set
+            {
+                _estadoC = value;
+            }
+        }
+
+        public int Sexo
+        {
+            get
+            {
+                return _sexo;
+            }
+
+            set
+            {
+                _sexo = value;
+            }
+        }
+
+        public double PrimaBase
+        {
+            get
+            {
+                return _primaBase;
+            }
+
+            set
+            {
+                _primaBase = value;
+            }
+        }
 
         public addContrato()
         {
@@ -107,8 +161,8 @@ namespace Inicio
             objCont.CodigoPlan = plan;
             objCont.FechaInicioVigencia = fechaVigencia;
             objCont.DeclaracionSalud = salud;
-            objCont.PrimaAnual = int.Parse(primaAnu);
-            objCont.PrimaMensual = int.Parse(primaMen);
+            objCont.PrimaAnual = primaAnu;
+            objCont.PrimaMensual = primaMen;
             objCont.Vigente = "1";
             objCont.Observaciones = observacion;
 
@@ -122,6 +176,62 @@ namespace Inicio
             {
                 MessageBox.Show("Contrato Ya Ingresado");
             }
+        }
+
+        private void btnVerDatos_Click(object sender, RoutedEventArgs e)
+        {
+            string rut = txtRutCont.Text;
+            bool existe = objCli.validar("Cliente",rut);
+            
+            if (existe == false){
+                string[] datos = conec.getDatosCliente(rut);
+                txtNombreCliCon.Text = datos[0] + " " + datos[1];
+                Edad = (DateTime.Now.Subtract(Convert.ToDateTime(datos[2])).Days / 365);
+                Sexo = int.Parse(datos[3]);
+                EstadoC = int.Parse(datos[4]);
+            }else{
+                MessageBox.Show("El Cliente no ha sido Ingresado en la Base de Datos");
+                txtNombreCliCon.Clear();
+            }
+            
+        }
+
+        private void cbbPlan_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string plan = cbbPlan.SelectedItem.ToString();
+            string[] datosPoliza = conec.datosPoliza(plan);
+            txtPoliza.Text = datosPoliza[0];
+            //txtPoliza.Text = datosPoliza[1];
+            PrimaBase = Convert.ToDouble(datosPoliza[1]);
+
+            double total, recargoEdad = 0, recargoSexo = 0, recargoEstadoC = 0, recargoBase = 0;
+
+            if (Edad < 18 && Edad > 25){
+                recargoEdad = 3.6;
+            }else if (Edad < 26 && Edad > 45){
+                recargoEdad = 2.4;
+            }else if (Edad > 45){
+                recargoEdad = 6.0;
+            }
+
+            if (Sexo == 1){
+                recargoSexo = 2.4;
+            }else if (Sexo == 2){
+                recargoSexo = 1.2;
+            }
+
+            if (EstadoC == 1){
+                recargoEstadoC = 4.8;
+            }else if (EstadoC == 2){
+                recargoEstadoC = 2.4;
+            }else if (EstadoC == 3 || EstadoC == 4){
+                recargoEstadoC = 3.6;
+            }
+
+            recargoBase = PrimaBase;
+            total = recargoBase + recargoEdad + recargoSexo + recargoEstadoC;
+            txtPrimaAnu.Text = total.ToString();
+            txtPrimaMen.Text = Math.Round((total / 12), 2).ToString();
         }
     }
 }
