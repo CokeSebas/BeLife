@@ -86,13 +86,11 @@ namespace Inicio
             objCli.Sexo = sexo;
 
             edita = objCli.editarCliente(rut);
-            if (edita == true)
-            {
+            if (edita == true){
                 MessageBox.Show("Cliente Editado");
                 limpiar();
-            }
-            else
-            {
+                desactivarOpciones();
+            }else{
                 MessageBox.Show("El RUT "+rut+" no ha sido ingresado");
             }
         }
@@ -108,6 +106,7 @@ namespace Inicio
                 dtpFechaNacCli.DisplayDate = Convert.ToDateTime(datos[2]);
                 cbbSexo.SelectedIndex = int.Parse(datos[3]);
                 cbbEC.SelectedIndex = int.Parse(datos[4]);
+                activarOpciones();
             }
             else{
                 MessageBox.Show("El RUT " + rut + " no ha sido ingresado");
@@ -121,17 +120,31 @@ namespace Inicio
             string rut = txtRutCli.Text; 
             objCli.Rut = rut;
 
-
-            elimina = objCli.eliminarCliente(rut);
-            if (elimina == false)
-            {
+            if (objCli.clienteContrato(rut) == true){
+                elimina = objCli.eliminarCliente(rut);
                 MessageBox.Show("Cliente Eliminado");
                 limpiar();
+                desactivarOpciones();
+            }else{
+                MessageBox.Show("El cliente tiene un contrato en vigencia, no se puede eliminar");
             }
-            else
-            {
-                MessageBox.Show("El RUT " + rut + " no ha sido ingresado");
-            }
+            
+        }
+
+        public void activarOpciones(){
+            btnEditarCli.IsEnabled = true;
+            btnEliminarCli.IsEnabled = true;
+            cbbEC.IsEnabled = true;
+            cbbSexo.IsEnabled = true;
+            dtpFechaNacCli.IsEnabled = true;
+        }
+
+        public void desactivarOpciones(){
+            btnEditarCli.IsEnabled = false;
+            btnEliminarCli.IsEnabled = false;
+            cbbEC.IsEnabled = false;
+            cbbSexo.IsEnabled = false;
+            dtpFechaNacCli.IsEnabled = false;
         }
 
         private void btnListarCli_Click(object sender, RoutedEventArgs e){

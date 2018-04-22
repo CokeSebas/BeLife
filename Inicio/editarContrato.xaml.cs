@@ -23,6 +23,7 @@ namespace Inicio
 
         public Conexion conec = new Conexion();
         public Contrato objCont = new Contrato();
+        public Cliente objCli = new Cliente();
 
         private int _edad;
         private int _estadoC;
@@ -138,7 +139,7 @@ namespace Inicio
                 cbbPlan.SelectedIndex = 5;
             }
 
-            dtpFechaInicio.DisplayDate = Convert.ToDateTime(datos[1]);
+            //dtpFechaInicio.DisplayDate = Convert.ToDateTime(datos[1]);
             if (datos[4] == "true"){
                 cbbSalud.SelectedIndex = 1;
             }else{
@@ -147,23 +148,48 @@ namespace Inicio
             
             txtPrimaAnu.Text = datos[5];
             txtPrimaMen.Text = datos[6];
+            txtObsv.Text = datos[7];
+            activarOpciones();
         }
 
         private void cbbRutCli_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             cbbListaContrato.Items.Clear();
-            string[] listCont = conec.listContratos(cbbRutCli.SelectedValue.ToString());
+            string rut = cbbRutCli.SelectedValue.ToString();
+            string[] listCont = conec.listContratos(rut);
             cbbListaContrato.SelectedIndex = 0;
             //cbbRutCli.Items.Add("Seleccione");
             for (int i = 0; i < listCont.Length; i++)
             {
                 cbbListaContrato.Items.Add(listCont[i]);
             }
+            string[] datos = conec.getDatosCliente(rut);
+            txtNombreCliCon.Text = datos[0] + " " + datos[1];
         }
 
         private void cbbListaContrato_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             limpiar();
+        }
+
+        public void activarOpciones(){
+            btnEditarCont.IsEnabled = true;
+            btnTerminarContrato.IsEnabled = true;
+            //cbbListaContrato.IsEnabled = true;
+            cbbPlan.IsEnabled = true;
+            //dtpFechaInicio.IsEnabled = true;
+            cbbSalud.IsEnabled = true;
+            txtObsv.IsEnabled = true;
+        }
+
+        public void desactivarOpciones(){
+            btnEditarCont.IsEnabled = false;
+            btnTerminarContrato.IsEnabled = false;
+            //cbbListaContrato.IsEnabled = false;
+            cbbPlan.IsEnabled = false;
+            //dtpFechaInicio.IsEnabled = false;
+            cbbSalud.IsEnabled = false;
+            txtObsv.IsEnabled = false;
         }
 
         public void limpiar(){
@@ -234,6 +260,52 @@ namespace Inicio
             total = recargoBase + recargoEdad + recargoSexo + recargoEstadoC;
             txtPrimaAnu.Text = total.ToString();
             txtPrimaMen.Text = Math.Round((total / 12), 2).ToString();
+        }
+
+        private void btnEditarCont_Click(object sender, RoutedEventArgs e){
+            bool edita = false;
+
+            string plan = cbbPlan.SelectedValue.ToString();
+            string salud = cbbSalud.SelectedValue.ToString();
+            string numero = cbbListaContrato.SelectedValue.ToString();
+            if (salud == "Si"){
+                salud = "1";
+            }else{
+                salud = "0";
+            }
+            string primaAnu = txtPrimaAnu.Text;
+            string primaMen = txtPrimaMen.Text;
+            string observacion = txtObsv.Text;
+            objCont.CodigoPlan = plan;
+            objCont.DeclaracionSalud = salud;
+            objCont.PrimaAnual = primaAnu;
+            objCont.PrimaMensual = primaMen;
+            objCont.Observaciones = observacion;
+            objCont.NumeroContrato = numero;
+            edita = objCont.editarContrato();
+            if (edita == true){
+                MessageBox.Show("Contrato Modificado");
+                limpiar();
+            }
+        }
+
+        private void btnTerminarContrato_Click(object sender, RoutedEventArgs e)
+        {
+            bool edita = false;
+            objCont.Vigente = "0";
+            objCont.NumeroContrato = cbbListaContrato.SelectedValue.ToString();
+            edita = objCont.terminarContrato();
+            if (edita == true)
+            {
+                MessageBox.Show("Contrato Terminado");
+                limpiar();
+                desactivarOpciones();
+                txtNombreCliCon.Clear();
+            }
+            else
+            {
+                MessageBox.Show("error");
+            }
         }
     }
 }

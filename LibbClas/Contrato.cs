@@ -167,7 +167,7 @@ namespace LibbClas
 
         public bool agregarContrato(){
 
-            string sql = "INSERT INTO Contrato VALUES ('"+NumeroContrato+ "', GETDATE(), '" + RutCliente+ "',(SELECT idPlan FROM [Plan] WHERE Nombre = '" + CodigoPlan + "'), convert(date, '" + FechaInicioVigencia+"'), '', "+Vigente+", "+DeclaracionSalud+","+PrimaAnual.Replace(",",".")+","+PrimaMensual.Replace(",", ".") + ",'"+Observaciones+"');";
+            string sql = "INSERT INTO Contrato VALUES ('"+NumeroContrato+ "', GETDATE(), '" + RutCliente+ "',(SELECT idPlan FROM [Plan] WHERE Nombre = '" + CodigoPlan + "'), convert(date, '" + FechaInicioVigencia+ "'), convert(date, '" + FechaFinVigencia + "'), " + Vigente+", "+DeclaracionSalud+","+PrimaAnual.Replace(",",".")+","+PrimaMensual.Replace(",", ".") + ",'"+Observaciones+"');";
 
             bool guarda = objConec.insertar(sql);
 
@@ -180,18 +180,29 @@ namespace LibbClas
         }
 
         public bool editarContrato(){
-            //if (validar("Cliente", rutB) == true){
-                string campos =  "CodigoPlan = (SELECT idPlan FROM [Plan] WHERE Nombre = '"+CodigoPlan+"'), FechaInicioVigencia = convert(DATE, '"+FechaFinVigencia+"'), FechaFinVigencia = CONVERT(date, '"+FechaFinVigencia+"'),Vigente = , DeclaracionSalud = "+DeclaracionSalud+", PrimaAnual = "+PrimaAnual+", PrimaMensual = "+PrimaMensual;
-                string condicion = " Numero = '" + NumeroContrato + "';";
-                bool edita = objConec.actualizar("Contrato", campos, condicion);
-                if (edita == true){
-                    return edita;
-                }else{
-                    return edita;
-                }
-            /*}else{
-                return false;
-            }*/
+            string campos =  "CodigoPlan = (SELECT idPlan FROM [Plan] WHERE Nombre = '"+CodigoPlan+"'),  DeclaracionSalud = "+DeclaracionSalud+", PrimaAnual = "+PrimaAnual.Replace(",", ".") + ", PrimaMensual = "+PrimaMensual.Replace(",", ".") + ", Observaciones = '"+Observaciones+"' ";
+            string condicion = " Numero = '" + NumeroContrato + "';";
+            bool edita = objConec.actualizar("Contrato", campos, condicion);
+            if (edita == true){
+                return edita;
+            }else{
+                return edita;
+            }
+        }
+
+        public bool terminarContrato()
+        {
+            string campos = "Vigente = "+Vigente+", FechaFinVigencia = GETDATE()";
+            string condicion = " Numero = '" + NumeroContrato + "';";
+            bool edita = objConec.actualizar("Contrato", campos, condicion);
+            if (edita == true)
+            {
+                return edita;
+            }
+            else
+            {
+                return edita;
+            }
         }
     }
 }

@@ -144,7 +144,9 @@ namespace Inicio
             string numero = anio + mes + dia + hora + minu + seg;
             string plan = cbbPlan.SelectedValue.ToString();
             DateTime fechaIniVig = dtpFechaInicio.SelectedDate.Value;
+            DateTime fechaFinVig = fechaIniVig.AddYears(1);
             string fechaVigencia = fechaIniVig.Year.ToString() + "-" + fechaIniVig.Month.ToString() + "-" + fechaIniVig.Day.ToString();
+            string fechaFinVigencia = fechaFinVig.Year.ToString() + "-" + fechaFinVig.Month.ToString() + "-" + fechaFinVig.Day.ToString();
             string salud = cbbSalud.SelectedValue.ToString();
             
             if (salud == "Si"){
@@ -160,6 +162,7 @@ namespace Inicio
             objCont.NumeroContrato = numero;
             objCont.CodigoPlan = plan;
             objCont.FechaInicioVigencia = fechaVigencia;
+            objCont.FechaFinVigencia = fechaFinVigencia;
             objCont.DeclaracionSalud = salud;
             objCont.PrimaAnual = primaAnu;
             objCont.PrimaMensual = primaMen;

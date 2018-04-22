@@ -17,6 +17,7 @@ namespace LibbClas
         public SqlDataAdapter da;
         public SqlCommand comando;
         public SqlDataReader registros;
+
         private List<Cliente> clientes = new List<Cliente>();
         private List<Contrato> contratos = new List<Contrato>();
 
@@ -33,7 +34,6 @@ namespace LibbClas
 
         //cierra la conexión a la BD
         public void cerraConexion() {
-
             cn.Close();
         }
 
@@ -182,8 +182,7 @@ namespace LibbClas
             comando = new SqlCommand(sql1, cn);
             registros = comando.ExecuteReader();
 
-            if (registros.Read())
-            {
+            if (registros.Read()){
                 listaSelec = new string[int.Parse(registros["count"].ToString())];
                 cerraConexion();
                 string sql = "SELECT Numero FROM Contrato WHERE RutCliente = '" + rut + "';";
@@ -191,8 +190,7 @@ namespace LibbClas
                 comando = new SqlCommand(sql, cn);
                 registros = comando.ExecuteReader();
 
-                while (registros.Read())
-                {
+                while (registros.Read()){
                     listaSelec[x] = registros["Numero"].ToString();
                     x++;
                 }
@@ -274,8 +272,8 @@ namespace LibbClas
             } else {
                 return false;
             }
-            //retorna true si se puede guardar el cliente.
-            //retorna false si el cliente ya esta ingresado.
+            //retorna true si el dato no esta ingresado.
+            //retorna false si el dato ya esta ingresado.
         }
 
         //insertar, funciona correcto
@@ -311,7 +309,7 @@ namespace LibbClas
 
         public string[] getDatosContrato(string numeroCon, string rutCliente)
         {
-            string[] datos = new string[7];
+            string[] datos = new string[8];
 
             string sql = "SELECT * FROM Contrato WHERE Numero = '" + numeroCon + "' AND RutCliente = '" + rutCliente + "';";
             abrirConexion();
@@ -327,6 +325,7 @@ namespace LibbClas
                 datos[4] = registros["DeclaracionSalud"].ToString();
                 datos[5] = registros["PrimaAnual"].ToString();
                 datos[6] = registros["PrimaMensual"].ToString();
+                datos[7] = registros["ObservacioneS"].ToString();
             }
             return datos;
         }
@@ -407,7 +406,6 @@ namespace LibbClas
             }
             return contratos;
         }
-
 
         public string[] datosPoliza(string nombrePlan)
         {

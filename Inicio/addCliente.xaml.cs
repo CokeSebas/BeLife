@@ -65,6 +65,7 @@ namespace Inicio
                 else
                 {
                     MessageBox.Show("Rut ya esta ingresado en la Base de Datos");
+                    txtRutCli.Clear();
                 }
             }
             catch (Exception error)

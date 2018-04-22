@@ -140,14 +140,18 @@ namespace LibbClas
             //Retorna true si el cliente fue editado, de lo contrario retorna false
         }
 
-        public bool eliminarCliente(string rutE)
-        {
+        public bool eliminarCliente(string rutE){
             string condicion = " RutCliente = '" + Rut + "';";
 
             bool elimina = conec.eliminar("Cliente", condicion);
             
             return elimina;
-           
+        }
+
+        public bool clienteContrato(string rut){
+            string condicion = "RutCliente = '" + rut + "'";
+            string tabla = "Contrato";
+            return conec.validar(tabla, condicion);
         }
     }
 }
