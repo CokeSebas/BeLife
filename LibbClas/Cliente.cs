@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibbClas
 {
-    public class Cliente
-    {
+    public class Cliente{
         Conexion conec = new Conexion();
         private string _rut;
         private string _nombre;
@@ -16,8 +15,7 @@ namespace LibbClas
         private string _sexo;
         private string _estadoCivil;
 
-        public string Rut
-        {
+        public string Rut{
             get
             {
                 return _rut;

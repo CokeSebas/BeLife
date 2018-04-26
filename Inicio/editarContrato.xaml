@@ -39,6 +39,7 @@
         <TextBox x:Name="txtPoliza" HorizontalAlignment="Left" Height="23" Margin="218,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <Label Content="Observaciones" HorizontalAlignment="Left" Margin="69,444,0,0" VerticalAlignment="Top" Width="88"/>
         <TextBox x:Name="txtObsv" HorizontalAlignment="Left" Height="89" Margin="218,444,0,-17.8" TextWrapping="Wrap" VerticalAlignment="Top" Width="171" IsEnabled="False"/>
+        <Button x:Name="btnCerrar" Content="Cerrar" HorizontalAlignment="Left" Margin="435,407,0,0" VerticalAlignment="Top" Width="137" Height="44" Click="btnCerrar_Click"/>
 
     </Grid>
 </Window>

@@ -17,12 +17,12 @@
         <DatePicker x:Name="dtpFechaNacCli" HorizontalAlignment="Left" Margin="202,187,0,0" VerticalAlignment="Top" SelectedDateFormat="Short" IsEnabled="False"/>
         <Label Content="Sexo:" HorizontalAlignment="Left" Margin="38,235,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cbbSexo" HorizontalAlignment="Left" Margin="202,238,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-        <Button x:Name="btnEditarCli" Content="Editar" HorizontalAlignment="Left" Margin="393,160,0,0" VerticalAlignment="Top" Width="113" Click="btnEditarCli_Click" IsEnabled="False" Height="29" />
-        <Button x:Name="btnLimpiarCli" Content="Limpiar" HorizontalAlignment="Left" Margin="393,91,0,0" VerticalAlignment="Top" Width="113" Click="btnLimpiarCli_Click" Height="32" />
+        <Button x:Name="btnEditarCli" Content="Editar" HorizontalAlignment="Left" Margin="393,137,0,0" VerticalAlignment="Top" Width="113" Click="btnEditarCli_Click" IsEnabled="False" Height="29" />
+        <Button x:Name="btnLimpiarCli" Content="Limpiar" HorizontalAlignment="Left" Margin="393,80,0,0" VerticalAlignment="Top" Width="113" Click="btnLimpiarCli_Click" Height="32" />
         <Label Content="Estado Civil:" HorizontalAlignment="Left" Margin="38,293,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cbbEC" HorizontalAlignment="Left" Margin="202,296,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-        <Button x:Name="btnBuscarCli" Content="Buscar" HorizontalAlignment="Left" Margin="393,27,0,0" VerticalAlignment="Top" Width="113" Click="btnBuscarCli_Click" Height="38"/>
-        <Button Name="btnEliminarCli" Margin="393,229,70,119" Click="btnEliminarCli_Click" IsEnabled="False">
+        <Button x:Name="btnBuscarCli" Content="Buscar" HorizontalAlignment="Left" Margin="393,15,0,0" VerticalAlignment="Top" Width="113" Click="btnBuscarCli_Click" Height="38"/>
+        <Button Name="btnEliminarCli" Margin="393,189,70,159" Click="btnEliminarCli_Click" IsEnabled="False">
 
             <DockPanel>
                 <Image Source="Imagenes\ClientDelete.png" Height="27" Width="20"/>
@@ -31,6 +31,7 @@
                 </TextBlock>
             </DockPanel>
         </Button>
-        <Button x:Name="btnListarCli" Content="Listar Clientes" HorizontalAlignment="Left" Margin="393,304,0,0" VerticalAlignment="Top" Width="113" Height="26" Click="btnListarCli_Click"/>
+        <Button x:Name="btnListarCli" Content="Listar Clientes" HorizontalAlignment="Left" Margin="393,243,0,0" VerticalAlignment="Top" Width="113" Height="26" Click="btnListarCli_Click"/>
+        <Button x:Name="btnCerrar" Content="Cerrar" HorizontalAlignment="Left" Margin="393,293,0,0" VerticalAlignment="Top" Width="113" Height="25" Click="btnCerrar_Click"/>
     </Grid>
 </Window>

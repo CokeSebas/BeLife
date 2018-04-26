@@ -21,7 +21,7 @@
         <Label x:Name="label3_Copy" Content="Rut Cliente" HorizontalAlignment="Left" Margin="51,28,0,0" VerticalAlignment="Top" Width="87"/>
         <TextBox x:Name="txtRutCont" HorizontalAlignment="Left" Height="23" Margin="193,32,0,0" TextWrapping="Wrap" Text="Ingrese Rut" VerticalAlignment="Top" Width="120" />
         <ComboBox x:Name="cbbSalud" HorizontalAlignment="Left" Margin="193,304,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnLimpiar" Content="Limpiar" HorizontalAlignment="Left" Margin="226,607,0,0" VerticalAlignment="Top" Width="88" Height="35"/>
+        <Button x:Name="btnLimpiar" Content="Limpiar" HorizontalAlignment="Left" Margin="226,607,0,0" VerticalAlignment="Top" Width="88" Height="35" Click="btnLimpiar_Click"/>
         <Label Content="Observaciones" HorizontalAlignment="Left" Margin="52,476,0,0" VerticalAlignment="Top" Width="88"/>
         <TextBox x:Name="txtObsv" HorizontalAlignment="Left" Height="89" Margin="194,488,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="171"/>
         <Label Content="Poliza" HorizontalAlignment="Left" Margin="53,194,0,0" VerticalAlignment="Top" Width="86"/>
@@ -29,5 +29,6 @@
         <Label Content="Nombre Cliente" HorizontalAlignment="Left" Margin="52,73,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtNombreCliCon" HorizontalAlignment="Left" Height="23" Margin="195,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <Button x:Name="btnVerDatos" Content="Ver Datos Cliente" HorizontalAlignment="Left" Margin="364,31,0,0" VerticalAlignment="Top" Width="121" Click="btnVerDatos_Click"/>
+        <Button x:Name="btnCerrar" Content="Cerrar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="95" Margin="364,607,0,0" Click="btnCerrar_Click" Height="35"/>
     </Grid>
 </Window>

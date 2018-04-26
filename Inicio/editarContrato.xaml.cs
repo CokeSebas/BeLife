@@ -158,7 +158,7 @@ namespace Inicio
 
         public void dataCliente()
         {
-            cbbListaContrato.Items.Clear();
+            //cbbListaContrato.Items.Clear();
             string rut = cbbRutCli.SelectedValue.ToString();
             string[] listCont = conec.listContratos(rut);
             cbbListaContrato.SelectedIndex = 0;
@@ -178,7 +178,7 @@ namespace Inicio
 
         private void cbbListaContrato_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            limpiar();
+            //limpiar();
         }
 
         public void activarOpciones(){
@@ -300,7 +300,7 @@ namespace Inicio
             objCont.NumeroContrato = numero;
             edita = objCont.editarContrato();
             if (edita == true){
-                MessageBox.Show("Contrato Modificado");
+                MessageBox.Show("Contrato Modificado", "Confirmacion!", MessageBoxButton.OK, MessageBoxImage.Information);
                 limpiar();
             }
         }
@@ -313,15 +313,20 @@ namespace Inicio
             edita = objCont.terminarContrato();
             if (edita == true)
             {
-                MessageBox.Show("Contrato Terminado");
+                MessageBox.Show("Contrato Terminado", "Confirmacion!", MessageBoxButton.OK, MessageBoxImage.Information);
                 limpiar();
                 desactivarOpciones();
                 txtNombreCliCon.Clear();
             }
             else
             {
-                MessageBox.Show("error");
+                MessageBox.Show("Contrato no se puede terminar", "Advertencia!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
+        }
+
+        private void btnCerrar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
         }
     }
 }

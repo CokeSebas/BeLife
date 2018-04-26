@@ -121,19 +121,18 @@ namespace Inicio
                 edita = objCli.editarCliente(rut);
                 if (edita == true)
                 {
-                    MessageBox.Show("Cliente Editado");
+                    MessageBox.Show("Cliente Editado", "Confirmacion!", MessageBoxButton.OK, MessageBoxImage.Information);
                     limpiar();
                     desactivarOpciones();
                 }
                 else
                 {
-                    MessageBox.Show("El RUT " + rut + " no ha sido ingresado");
+                    MessageBox.Show("El RUT " + rut + " no ha sido ingresado", "Advertencia!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
             }
             catch (Exception error)
             {
-
-                MessageBox.Show(error.Message);
+                MessageBox.Show(error.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             
         }
@@ -153,7 +152,7 @@ namespace Inicio
                 activarOpciones();
             }
             else{
-                MessageBox.Show("El RUT " + rut + " no ha sido ingresado");
+                MessageBox.Show("El RUT " + rut + " no ha sido ingresado", "Advertencia!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
        
         }
@@ -166,16 +165,17 @@ namespace Inicio
 
             if (objCli.clienteContrato(rut) == true){
                 elimina = objCli.eliminarCliente(rut);
-                MessageBox.Show("Cliente Eliminado");
+                MessageBox.Show("Cliente Eliminado", "Confirmacion!", MessageBoxButton.OK, MessageBoxImage.Information);
                 limpiar();
                 desactivarOpciones();
             }else{
-                MessageBox.Show("El cliente tiene un contrato en vigencia, no se puede eliminar");
+                MessageBox.Show("El cliente tiene un contrato en vigencia, no se puede eliminar", "Advertencia!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             
         }
 
         public void activarOpciones(){
+            txtRutCli.IsEnabled = false;
             btnEditarCli.IsEnabled = true;
             btnEliminarCli.IsEnabled = true;
             cbbEC.IsEnabled = true;
@@ -193,6 +193,7 @@ namespace Inicio
             dtpFechaNacCli.IsEnabled = false;
             txtNombCli.IsEnabled = false;
             txtApCli.IsEnabled = false;
+            txtRutCli.IsEnabled = true;
         }
 
         private void btnListarCli_Click(object sender, RoutedEventArgs e){
@@ -203,6 +204,11 @@ namespace Inicio
             this.Hide();
             listCli.ShowDialog();
             this.Close();
+        }
+
+        private void btnCerrar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
         }
     }
 }

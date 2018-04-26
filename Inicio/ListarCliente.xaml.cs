@@ -113,12 +113,10 @@ namespace Inicio
             int index = (dataGridUsuarios.SelectedIndex)+1 ;
             int largoDG = dataGridUsuarios.Items.Count;
             
-            /*MessageBox.Show("Seleccion " + index);
-            MessageBox.Show("LargoGrilla " + largoDG);
-            MessageBox.Show("Largo array " + Largo);*/
             if (index >Largo){
-                MessageBox.Show("No se puede mostrar datos de una fila vacia");
-            }else{
+                MessageBox.Show("No se puede mostrar datos de una fila vacia", "Advertencia!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else{
                 Cliente objCli = dataGridUsuarios.SelectedItem as Cliente;
                 string nom = objCli.Nombre;
                 string ap = objCli.Apellido;
@@ -144,5 +142,9 @@ namespace Inicio
             Largo = clientes.Count();
         }
 
+        private void btnCerrar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+        }
     }
 }

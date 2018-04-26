@@ -16,6 +16,7 @@
         <ComboBox x:Name="cbbContrato" HorizontalAlignment="Left" Margin="636,16,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbbContrato_SelectionChanged"/>
         <Label Content="Poliza" HorizontalAlignment="Left" Margin="496,58,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cbbPoliza" HorizontalAlignment="Left" Margin="636,58,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbbPoliza_SelectionChanged"/>
+        <Button x:Name="btnCerrar" Content="Cerrar" HorizontalAlignment="Left" Margin="334,69,0,0" VerticalAlignment="Top" Width="75" Click="btnCerrar_Click"/>
 
         <!--<Label x:Name="label10" Content="Plan" HorizontalAlignment="Left" Margin="44,57,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.054,0.45"/>
         <ComboBox x:Name="cbbPlan" HorizontalAlignment="Left" Margin="134,57,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbbPlan_SelectionChanged"/>-->

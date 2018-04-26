@@ -104,9 +104,7 @@ namespace Inicio
 
         }
 
-
-        public void limpiar()
-        {
+        public void limpiar(){
             txtPrimaMen.Clear();
             txtPrimaAnu.Clear();
             cbbSalud.SelectedIndex = 0;
@@ -186,29 +184,18 @@ namespace Inicio
                     guarda = objCont.agregarContrato();
                     if (guarda == true)
                     {
-                        MessageBox.Show("Contrato Ingresado");
+                        MessageBox.Show("Contrato Ingresado", "Confirmacion!", MessageBoxButton.OK, MessageBoxImage.Information);
                         limpiar();
                     }
                     else
                     {
-                        MessageBox.Show("Contrato Ya Ingresado");
+                        MessageBox.Show("Contrato Ya Ingresado", "Advertencia!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     }
                 }else{
-                    MessageBox.Show("Mes de inicio de vigencia no puede ser superior a un mes");
-                }
-               
-                guarda = objCont.agregarContrato();
-                if (guarda == true)
-                {
-                    MessageBox.Show("Contrato Ingresado");
-                    limpiar();
-                }
-                else
-                {
-                    MessageBox.Show("Contrato Ya Ingresado");
+                    MessageBox.Show("Mes de inicio de vigencia no puede ser superior a un mes", "Advertencia!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
             }catch (Exception error){
-                MessageBox.Show(error.Message);
+                MessageBox.Show(error.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             
         }
@@ -225,7 +212,7 @@ namespace Inicio
                 Sexo = int.Parse(datos[3]);
                 EstadoC = int.Parse(datos[4]);
             }else{
-                MessageBox.Show("El Cliente no ha sido Ingresado en la Base de Datos");
+                MessageBox.Show("El Cliente no ha sido Ingresado en la Base de Datos", "Advertencia!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 txtNombreCliCon.Clear();
             }
             
@@ -269,12 +256,20 @@ namespace Inicio
             txtPrimaMen.Text = Math.Round((total / 12), 2).ToString();
         }
 
-        private void btnListarCon_Click(object sender, RoutedEventArgs e)
-        {
+        private void btnListarCon_Click(object sender, RoutedEventArgs e){
             ListadoContratos listCont = new ListadoContratos();
             this.Hide();
             listCont.Owner = this;
             listCont.ShowDialog();
+        }
+
+        private void btnLimpiar_Click(object sender, RoutedEventArgs e){
+            limpiar();
+        }
+
+        private void btnCerrar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
         }
     }
 }

@@ -79,7 +79,7 @@ namespace Inicio
 
             if (index > Largo)
             {
-                MessageBox.Show("No se puede mostrar datos de una fila vacia");
+                MessageBox.Show("No se puede mostrar datos de una fila vacia", "Advertencia!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             else
             {
@@ -99,7 +99,7 @@ namespace Inicio
                     edCont.Owner = this;
                     edCont.Show();
                 }catch (Exception error){
-                    MessageBox.Show(error.Message);
+                    MessageBox.Show(error.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 
             }
@@ -136,6 +136,11 @@ namespace Inicio
             contratos = conec.filtroContratos(filtro);
             dgtContratos.ItemsSource = contratos;
             Largo = contratos.Count();
+        }
+
+        private void btnCerrar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
         }
 
         /*private void cbbPlan_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -56,19 +56,19 @@ namespace Inicio
                 guarda = objCli.guardarCliente();
                 if (guarda == true)
                 {
-                    MessageBox.Show("Cliente guardado");
+                    MessageBox.Show("Cliente guardado", "Confirmacion!", MessageBoxButton.OK, MessageBoxImage.Information);
                     limpiar();
                 }
                 else
                 {
-                    MessageBox.Show("Rut ya esta ingresado en la Base de Datos");
+                    MessageBox.Show("Rut ya esta ingresado en la Base de Datos", "Advertencia!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     txtRutCli.Clear();
                 }
             }
             catch (Exception error)
             {
 
-                MessageBox.Show(error.Message);
+                MessageBox.Show(error.Message,"Error!",MessageBoxButton.OK,MessageBoxImage.Error);
             }
             
         }
@@ -103,6 +103,11 @@ namespace Inicio
                 cbbEC.Items.Add(listEC[x]);
             }
 
+        }
+
+        private void btnCerrar_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
         }
     }
 }
