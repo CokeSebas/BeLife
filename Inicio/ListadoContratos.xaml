@@ -5,11 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Inicio"
         mc:Ignorable="d"
-        Title="Listado de Contratos" Height="450" Width="800"
+        Title="Listado de Contratos" Height="501.613" Width="893.548"
         Icon="Imagenes/ContractSearch.png">
     <Grid>
-        <DataGrid x:Name="dgtContratos" HorizontalAlignment="Left" Height="350" Margin="10,10,0,0" VerticalAlignment="Top" Width="772"/>
-        <Button Content="Buscar" HorizontalAlignment="Left" Margin="346,376,0,0" VerticalAlignment="Top" Width="75"/>
+        <DataGrid x:Name="dgtContratos" HorizontalAlignment="Left" Height="350" Margin="0,122,0,0" VerticalAlignment="Top" Width="887" SelectionChanged="dgtContratos_SelectionChanged"/>
+        <Button x:Name="button" Content="Buscar " HorizontalAlignment="Left" Margin="334,19,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
+        <Label x:Name="label2" Content="Rut" HorizontalAlignment="Left" Margin="38,16,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtRut" HorizontalAlignment="Left" Height="23" Margin="134,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Numero Contrato:" HorizontalAlignment="Left" Margin="496,16,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cbbContrato" HorizontalAlignment="Left" Margin="636,16,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbbContrato_SelectionChanged"/>
+        <Label Content="Poliza" HorizontalAlignment="Left" Margin="496,58,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cbbPoliza" HorizontalAlignment="Left" Margin="636,58,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbbPoliza_SelectionChanged"/>
+
+        <!--<Label x:Name="label10" Content="Plan" HorizontalAlignment="Left" Margin="44,57,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.054,0.45"/>
+        <ComboBox x:Name="cbbPlan" HorizontalAlignment="Left" Margin="134,57,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbbPlan_SelectionChanged"/>-->
 
     </Grid>
 </Window>

@@ -27,17 +27,45 @@ namespace Inicio
         public Sexo objSex = new Sexo();
         public EstadoCivil objEC = new EstadoCivil();
 
+        private List<Cliente> clientes = new List<Cliente>();
+
+        private int _largo = 0;
+
+        public int Largo
+        {
+            get
+            {
+                return _largo;
+            }
+
+            set
+            {
+                _largo = value;
+            }
+        }
+
         public ListarCliente()
         {
             InitializeComponent();
             LlenarCombo();
-
-            dataGridUsuarios.ItemsSource = conec.ListarClientes();
+            
+            clientes = conec.ListarClientes();
+            dataGridUsuarios.ItemsSource = clientes;
+            Largo = clientes.Count();
+            //dataGridUsuarios.Items.RemoveAt(dataGridUsuarios.Items.Count - 1);
+            //dataGridUsuarios.Items.RemoveAt(0);
         }
 
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            dataGridUsuarios.ItemsSource = null;
+            string sexo = cbbSexo.SelectedIndex.ToString();
+            string filtro = "idSexo = " + sexo;
 
+            clientes = conec.filtroClientes(filtro);
+            
+            dataGridUsuarios.ItemsSource = clientes;
+            Largo = clientes.Count();
         }
 
         public void LlenarCombo()
@@ -69,53 +97,52 @@ namespace Inicio
             return conec.validar(tabla, condicion);
         }
 
-        private void comboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
+        private void button_Click(object sender, RoutedEventArgs e) {
+            string rut = txtRut.Text;
+            string filtro = "RutCliente = '" + rut+"';";
+            dataGridUsuarios.ItemsSource = null;
 
+            clientes = conec.filtroClientes(filtro);
+
+            dataGridUsuarios.ItemsSource = clientes;
+            Largo = clientes.Count();
         }
 
-        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
-        }
-
-        private void listView1_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            //DataTable dt = new DataTable();
-            //dt = conec.consultar2("contrato");
-            /*dtLisCli.Columns.Add("Nomnre");
-            dtLisCli.Columns.Add("nombre", "Nombre");
-            dtLisCli.Columns.Add("apellido", "Apellido");
-            dtLisCli.Columns.Add("direccion", "Direccion");
-            dtLisCli.Columns.Add("email", "Email");
-            dtLisCli.Columns.Add("telefono", "Telefono");
-            */
-            //dtLisCli.ItemsSource =;
-            DataTable dt = new DataTable();
-            dt = conec.consultar2("contrato");
+        private void dataGridUsuarios_SelectionChanged(object sender, SelectionChangedEventArgs e){
+            int index = (dataGridUsuarios.SelectedIndex)+1 ;
+            int largoDG = dataGridUsuarios.Items.Count;
             
-
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                DataRow dr = dt.Rows[i];
-                //dtLisCli.Columns.Add(dr["numero"]);
-
-                /*dtLisCli.Columns.Add("nombre", "Nombre");
-                dtLisCli.Columns.Add("apellido", "Apellido");
-                dtLisCli.Columns.Add("direccion", "Direccion");
-                dtLisCli.Columns.Add("email", "Email");
-                dtLisCli.Columns.Add("telefono", "Telefono");*/
+            /*MessageBox.Show("Seleccion " + index);
+            MessageBox.Show("LargoGrilla " + largoDG);
+            MessageBox.Show("Largo array " + Largo);*/
+            if (index >Largo){
+                MessageBox.Show("No se puede mostrar datos de una fila vacia");
+            }else{
+                Cliente objCli = dataGridUsuarios.SelectedItem as Cliente;
+                string nom = objCli.Nombre;
+                string ap = objCli.Apellido;
+                string rut = objCli.Rut;
+                string sexo = objCli.Sexo;
+                string estC = objCli.EstadoCivil;
+                string fecN = objCli.FechaNacimiento;
+                editarCliente edCli = new editarCliente(nom, ap, rut, sexo, estC, fecN);
+                this.Hide();
+                edCli.Owner = this;
+                edCli.Show();
             }
         }
 
-        private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void cbbEC_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            dataGridUsuarios.ItemsSource = null;
+            string estadoC = cbbEC.SelectedIndex.ToString();
+            string filtro = "idEstadoCivil = " + estadoC;
 
+            clientes = conec.filtroClientes(filtro);
+            dataGridUsuarios.ItemsSource = clientes;
+            Largo = clientes.Count();
         }
+
     }
 }

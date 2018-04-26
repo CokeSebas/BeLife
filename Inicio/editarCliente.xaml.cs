@@ -34,6 +34,37 @@ namespace Inicio
             LlenarCombo();
         }
 
+        public editarCliente(string nombre, string apellido, string rut, string sexo, string estado, string fecha)
+        {
+            InitializeComponent();
+            LlenarCombo();
+            txtNombCli.Text = nombre;
+            txtRutCli.Text = rut;
+            txtApCli.Text = apellido;
+
+            if (sexo == "Masculino"){
+                cbbSexo.SelectedIndex = 1;
+            }else if (sexo == "Femenino"){
+                cbbSexo.SelectedIndex = 2;
+            }
+
+            if (estado == "Soltero"){
+                cbbEC.SelectedIndex = 1;
+            }else if (estado == "Casado"){
+                cbbEC.SelectedIndex = 2;
+            }else if (estado == "Divorciado"){
+                cbbEC.SelectedIndex = 3;
+            }else if (estado == "Viudo"){
+                cbbEC.SelectedIndex = 4;
+            }
+
+            dtpFechaNacCli.DisplayDate = Convert.ToDateTime(fecha);
+            dtpFechaNacCli.SelectedDate = Convert.ToDateTime(fecha);
+            //limpiar();
+            activarOpciones();
+            
+        }
+
         public void limpiar(){
             txtApCli.Clear();
             txtNombCli.Clear();
@@ -70,29 +101,41 @@ namespace Inicio
 
         private void btnEditarCli_Click(object sender, RoutedEventArgs e)
         {
-            bool edita = false;
-            string nombre = txtNombCli.Text;
-            string apellido = txtApCli.Text;
-            string rut = txtRutCli.Text;
-            DateTime fechaC = dtpFechaNacCli.SelectedDate.Value;
-            string fecNac = fechaC.Year.ToString() + "-" + fechaC.Month.ToString() + "-" + fechaC.Day.ToString();
-            string sexo = cbbSexo.SelectedIndex.ToString();
-            string estadoCi = cbbEC.SelectedIndex.ToString();
-            objCli.Rut = rut;
-            objCli.Nombre = nombre;
-            objCli.Apellido = apellido;
-            objCli.FechaNacimiento = fecNac;
-            objCli.EstadoCivil = estadoCi;
-            objCli.Sexo = sexo;
+            try
+            {
+                bool edita = false;
+                string nombre = txtNombCli.Text;
+                string apellido = txtApCli.Text;
+                string rut = txtRutCli.Text;
+                DateTime fechaC = dtpFechaNacCli.SelectedDate.Value;
+                string fecNac = fechaC.Year.ToString() + "-" + fechaC.Month.ToString() + "-" + fechaC.Day.ToString();
+                string sexo = cbbSexo.SelectedIndex.ToString();
+                string estadoCi = cbbEC.SelectedIndex.ToString();
+                objCli.Rut = rut;
+                objCli.Nombre = nombre;
+                objCli.Apellido = apellido;
+                objCli.FechaNacimiento = fecNac;
+                objCli.EstadoCivil = estadoCi;
+                objCli.Sexo = sexo;
 
-            edita = objCli.editarCliente(rut);
-            if (edita == true){
-                MessageBox.Show("Cliente Editado");
-                limpiar();
-                desactivarOpciones();
-            }else{
-                MessageBox.Show("El RUT "+rut+" no ha sido ingresado");
+                edita = objCli.editarCliente(rut);
+                if (edita == true)
+                {
+                    MessageBox.Show("Cliente Editado");
+                    limpiar();
+                    desactivarOpciones();
+                }
+                else
+                {
+                    MessageBox.Show("El RUT " + rut + " no ha sido ingresado");
+                }
             }
+            catch (Exception error)
+            {
+
+                MessageBox.Show(error.Message);
+            }
+            
         }
 
         private void btnBuscarCli_Click(object sender, RoutedEventArgs e) {
@@ -104,6 +147,7 @@ namespace Inicio
                 txtNombCli.Text = datos[0];
                 txtApCli.Text = datos[1];
                 dtpFechaNacCli.DisplayDate = Convert.ToDateTime(datos[2]);
+                dtpFechaNacCli.SelectedDate = Convert.ToDateTime(datos[2]);
                 cbbSexo.SelectedIndex = int.Parse(datos[3]);
                 cbbEC.SelectedIndex = int.Parse(datos[4]);
                 activarOpciones();
@@ -137,6 +181,8 @@ namespace Inicio
             cbbEC.IsEnabled = true;
             cbbSexo.IsEnabled = true;
             dtpFechaNacCli.IsEnabled = true;
+            txtNombCli.IsEnabled = true;
+            txtApCli.IsEnabled = true;
         }
 
         public void desactivarOpciones(){
@@ -145,12 +191,18 @@ namespace Inicio
             cbbEC.IsEnabled = false;
             cbbSexo.IsEnabled = false;
             dtpFechaNacCli.IsEnabled = false;
+            txtNombCli.IsEnabled = false;
+            txtApCli.IsEnabled = false;
         }
 
         private void btnListarCli_Click(object sender, RoutedEventArgs e){
+            
             ListarCliente listCli = new ListarCliente();
-            listCli.Owner = this;
+
+            //listCli.Owner = this;
+            this.Hide();
             listCli.ShowDialog();
+            this.Close();
         }
     }
 }

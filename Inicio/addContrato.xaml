@@ -16,7 +16,7 @@
         <TextBox x:Name="txtPrimaAnu" HorizontalAlignment="Left" Height="23" Margin="193,365,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <TextBox x:Name="txtPrimaMen" HorizontalAlignment="Left" Height="23" Margin="193,421,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
         <ComboBox x:Name="cbbPlan" HorizontalAlignment="Left" Margin="195,144,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbbPlan_SelectionChanged"/>
-        <Button x:Name="btnListarCon" Content="Listar Contrato" HorizontalAlignment="Left" Margin="345,607,0,0" VerticalAlignment="Top" Width="94" Height="35"/>
+        <!--<Button x:Name="btnListarCon" Content="Listar Contrato" HorizontalAlignment="Left" Margin="345,607,0,0" VerticalAlignment="Top" Width="94" Height="35" Click="btnListarCon_Click"/>-->
         <DatePicker x:Name="dtpFechaInicio" HorizontalAlignment="Left" Margin="193,242,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label3_Copy" Content="Rut Cliente" HorizontalAlignment="Left" Margin="51,28,0,0" VerticalAlignment="Top" Width="87"/>
         <TextBox x:Name="txtRutCont" HorizontalAlignment="Left" Height="23" Margin="193,32,0,0" TextWrapping="Wrap" Text="Ingrese Rut" VerticalAlignment="Top" Width="120" />

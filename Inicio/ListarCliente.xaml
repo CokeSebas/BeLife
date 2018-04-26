@@ -11,10 +11,9 @@
         <ComboBox x:Name="cbbSexo" HorizontalAlignment="Left" Margin="147,37,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="comboBox_SelectionChanged"/>
         <Label x:Name="label" Content="Sexo" HorizontalAlignment="Left" Margin="52,36,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label1" Content="Estado Civil" HorizontalAlignment="Left" Margin="52,75,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.477,1.626"/>
-        <ComboBox x:Name="cbbEC" HorizontalAlignment="Left" Margin="147,71,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="comboBox_SelectionChanged_1"/>
+        <ComboBox x:Name="cbbEC" HorizontalAlignment="Left" Margin="147,71,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="cbbEC_SelectionChanged" />
         <Label x:Name="label2" Content="Rut" HorizontalAlignment="Left" Margin="52,106,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="147,109,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <DataGrid x:Name="dataGridUsuarios" CanUserAddRows="True" HorizontalAlignment="Left" Margin="0,155,0,0" VerticalAlignment="Top" Height="255" Width="494" />
-
+        <TextBox x:Name="txtRut" HorizontalAlignment="Left" Height="23" Margin="147,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <DataGrid x:Name="dataGridUsuarios" CanUserAddRows="True" HorizontalAlignment="Left" Margin="0,155,0,0" VerticalAlignment="Top" Height="255" Width="494" SelectionChanged="dataGridUsuarios_SelectionChanged" />
     </Grid>
 </Window>

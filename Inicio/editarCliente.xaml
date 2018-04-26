@@ -14,15 +14,23 @@
         <Label Content="Fecha Nacimiento:" HorizontalAlignment="Left" Margin="38,185,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Margin="202,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" x:Name="txtNombCli" IsEnabled="False"/>
         <TextBox HorizontalAlignment="Left" Margin="202,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" x:Name="txtApCli" Width="120" IsEnabled="False"/>
-        <DatePicker x:Name="dtpFechaNacCli" HorizontalAlignment="Left" Margin="202,185,0,0" VerticalAlignment="Top" SelectedDateFormat="Short" IsEnabled="False"/>
+        <DatePicker x:Name="dtpFechaNacCli" HorizontalAlignment="Left" Margin="202,187,0,0" VerticalAlignment="Top" SelectedDateFormat="Short" IsEnabled="False"/>
         <Label Content="Sexo:" HorizontalAlignment="Left" Margin="38,235,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cbbSexo" HorizontalAlignment="Left" Margin="202,238,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-        <Button x:Name="btnEditarCli" Content="Editar" HorizontalAlignment="Left" Margin="393,170,0,0" VerticalAlignment="Top" Width="75" Click="btnEditarCli_Click" IsEnabled="False" />
-        <Button x:Name="btnLimpiarCli" Content="Limpiar" HorizontalAlignment="Left" Margin="393,91,0,0" VerticalAlignment="Top" Width="75" Click="btnLimpiarCli_Click" />
+        <Button x:Name="btnEditarCli" Content="Editar" HorizontalAlignment="Left" Margin="393,160,0,0" VerticalAlignment="Top" Width="113" Click="btnEditarCli_Click" IsEnabled="False" Height="29" />
+        <Button x:Name="btnLimpiarCli" Content="Limpiar" HorizontalAlignment="Left" Margin="393,91,0,0" VerticalAlignment="Top" Width="113" Click="btnLimpiarCli_Click" Height="32" />
         <Label Content="Estado Civil:" HorizontalAlignment="Left" Margin="38,293,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cbbEC" HorizontalAlignment="Left" Margin="202,296,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-        <Button x:Name="btnBuscarCli" Content="Buscar" HorizontalAlignment="Left" Margin="393,27,0,0" VerticalAlignment="Top" Width="75" Click="btnBuscarCli_Click"/>
-        <Button x:Name="btnEliminarCli" Content="Eliminar" HorizontalAlignment="Left" Margin="393,235,0,0" VerticalAlignment="Top" Width="75" Click="btnEliminarCli_Click" IsEnabled="False"/>
-        <Button x:Name="btnListarCli" Content="Listar Clientes" HorizontalAlignment="Left" Margin="393,304,0,0" VerticalAlignment="Top" Width="85" Height="26" Click="btnListarCli_Click"/>
+        <Button x:Name="btnBuscarCli" Content="Buscar" HorizontalAlignment="Left" Margin="393,27,0,0" VerticalAlignment="Top" Width="113" Click="btnBuscarCli_Click" Height="38"/>
+        <Button Name="btnEliminarCli" Margin="393,229,70,119" Click="btnEliminarCli_Click" IsEnabled="False">
+
+            <DockPanel>
+                <Image Source="Imagenes\ClientDelete.png" Height="27" Width="20"/>
+                <TextBlock>
+                    Eliminar Cliente
+                </TextBlock>
+            </DockPanel>
+        </Button>
+        <Button x:Name="btnListarCli" Content="Listar Clientes" HorizontalAlignment="Left" Margin="393,304,0,0" VerticalAlignment="Top" Width="113" Height="26" Click="btnListarCli_Click"/>
     </Grid>
 </Window>

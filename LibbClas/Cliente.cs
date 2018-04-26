@@ -43,9 +43,15 @@ namespace LibbClas
                 return _nombre;
             }
 
-            set
-            {
-                _nombre = value;
+            set{
+                if (value != "")
+                {
+                    _nombre = value;
+                }
+                else
+                {
+                    throw new Exception("Nombre no puede estar Vacio");
+                }
             }
         }
 
@@ -58,7 +64,14 @@ namespace LibbClas
 
             set
             {
-                _apellido = value;
+                if (value != "")
+                {
+                    _apellido = value;
+                }
+                else
+                {
+                    throw new Exception("Apellido no puede estar Vacio");
+                }
             }
         }
 
@@ -71,7 +84,22 @@ namespace LibbClas
 
             set
             {
-                _fechaNacimiento = value;
+                if (value != ""){
+                    DateTime fecha_nac = Convert.ToDateTime(value);
+                    int result = DateTime.Compare(fecha_nac, DateTime.Today);
+                    int edad = DateTime.Today.Year - fecha_nac.Year;
+                    if (result <= 0){
+                        if (edad >18){
+                            _fechaNacimiento = value;
+                        }else{
+                            throw new Exception("Cliente debe tener mas de 18 años");
+                        }
+                    }else{
+                        throw new Exception("Fecha de nacimiento no puede ser Superior a la fecha Actual");
+                    }
+                }else{
+                    throw new Exception("Fecha de nacimiento no puede ser vacia");
+                }                
             }
         }
 
@@ -84,7 +112,14 @@ namespace LibbClas
 
             set
             {
-                _sexo = value;
+                if (value != "0")
+                {
+                    _sexo = value;
+                }
+                else
+                {
+                    throw new Exception("Debe seleccionar un Sexo");
+                }
             }
         }
 
@@ -97,7 +132,14 @@ namespace LibbClas
 
             set
             {
-                _estadoCivil = value;
+                if (value != "0")
+                {
+                    _estadoCivil = value;
+                }
+                else
+                {
+                    throw new Exception("Debe seleccionar un Estado Civil");
+                }
             }
         }
 

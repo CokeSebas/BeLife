@@ -23,11 +23,11 @@
                         <Image Source="Imagenes/ClientSearch.png" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="_Eliminar Cliente" Name="mnElCliente" Click="mnEliminarCliente">
+                <!--<MenuItem Header="_Eliminar Cliente" Name="mnElCliente" Click="mnEliminarCliente">
                     <MenuItem.Icon>
                         <Image Source="Imagenes\ClientDelete.png" />
                     </MenuItem.Icon>
-                </MenuItem>
+                </MenuItem>-->
                 <MenuItem Header="_Listar Clientes" Name="mnListClientes" Click="mnListCliente">
                     <MenuItem.Icon>
                         <Image Source="Imagenes\ClientSearch.png" />
@@ -48,7 +48,7 @@
                         <Image Source="Imagenes\ContractSearch.png" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="_Terminar Contrato" Name="mnTerContratos" Click="mnTerminarContrato">
+                <!--<MenuItem Header="_Terminar Contrato" Name="mnTerContratos" Click="mnTerminarContrato">
                     <MenuItem.Icon>
                         <Image Source="Imagenes\ContractDelete.png" />
                     </MenuItem.Icon>
@@ -57,7 +57,7 @@
                     <MenuItem.Icon>
                         <Image Source="Imagenes\ContractDelete.png" />
                     </MenuItem.Icon>
-                </MenuItem>
+                </MenuItem>-->
                 <MenuItem Header="_Listar Contrato" Name="mnLisContratos" Click="mnListarContrato">
                     <MenuItem.Icon>
                         <Image Source="Imagenes\DataSearch.png" />

@@ -88,16 +88,18 @@ namespace Inicio
             listCombo();
         }
 
+        public editarContrato(string numero, string rut, string plan, string salud, string primaAn, string primaMen, string obs) {
+            InitializeComponent();
+            listCombo();
+
+            cbbRutCli.SelectedValue = rut;
+            cbbListaContrato.SelectedValue = numero;
+            dataCliente();
+            buscarContrato();
+
+        }
+
         public void listCombo(){
-
-
-            /*string[] listaContrato = conec.getListCont();
-            cbbListaContrato.SelectedIndex = 0;
-            cbbListaContrato.Items.Add("Seleccione");
-            for (int i = 0; i < listaContrato.Length; i++)
-            {
-                cbbListaContrato.Items.Add(listaContrato[i]);
-            }*/
 
             string[] listRutC = conec.listRutContrato();
             cbbRutCli.SelectedIndex = 0;
@@ -120,14 +122,13 @@ namespace Inicio
             cbbSalud.Items.Add("Si");
         }
 
-        private void btnBuscarCont_Click(object sender, RoutedEventArgs e)
-        {
+        public void buscarContrato(){
             string rut = cbbRutCli.SelectedItem.ToString();
             string numero = cbbListaContrato.SelectedItem.ToString();
             string[] datos;
-           
+
             datos = conec.getDatosContrato(numero, rut);
-            if (datos[0]== "VID01"){
+            if (datos[0] == "VID01"){
                 cbbPlan.SelectedIndex = 1;
             }else if (datos[0] == "VID02"){
                 cbbPlan.SelectedIndex = 2;
@@ -138,21 +139,24 @@ namespace Inicio
             }else if (datos[0] == "VID05"){
                 cbbPlan.SelectedIndex = 5;
             }
-
-            //dtpFechaInicio.DisplayDate = Convert.ToDateTime(datos[1]);
+            
             if (datos[4] == "true"){
                 cbbSalud.SelectedIndex = 1;
             }else{
                 cbbSalud.SelectedIndex = 2;
             }
-            
+
             txtPrimaAnu.Text = datos[5];
             txtPrimaMen.Text = datos[6];
             txtObsv.Text = datos[7];
             activarOpciones();
+        } 
+
+        private void btnBuscarCont_Click(object sender, RoutedEventArgs e){
+            buscarContrato();
         }
 
-        private void cbbRutCli_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public void dataCliente()
         {
             cbbListaContrato.Items.Clear();
             string rut = cbbRutCli.SelectedValue.ToString();
@@ -165,6 +169,11 @@ namespace Inicio
             }
             string[] datos = conec.getDatosCliente(rut);
             txtNombreCliCon.Text = datos[0] + " " + datos[1];
+        }
+
+        private void cbbRutCli_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dataCliente();
         }
 
         private void cbbListaContrato_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -193,15 +202,21 @@ namespace Inicio
         }
 
         public void limpiar(){
-            txtPrimaMen.Text = "";
-            txtPrimaAnu.Text = "";
+            cbbRutCli.SelectedIndex = 0;
+            txtNombreCliCon.Clear();
+            cbbListaContrato.SelectedIndex = 0;
             cbbPlan.SelectedIndex = 0;
+            txtPoliza.Clear();
             cbbSalud.SelectedIndex = 0;
+            txtPrimaMen.Clear();
+            txtPrimaAnu.Clear();
+            txtObsv.Clear();
         }
 
         private void btnListarCon_Click(object sender, RoutedEventArgs e)
         {
             ListadoContratos listCont = new ListadoContratos();
+            this.Hide();
             listCont.Owner = this;
             listCont.ShowDialog();
         }
@@ -209,6 +224,7 @@ namespace Inicio
         private void btnLimpiar_Click(object sender, RoutedEventArgs e)
         {
             limpiar();
+            desactivarOpciones();
         }
 
         private void cbbPlan_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -227,6 +227,35 @@ namespace LibbClas
             return listaSelec;
         }
 
+        public string[] getlistPoliza(){
+            string[] listaSelec;
+            int x = 0;
+            listaSelec = new String[1];
+            abrirConexion();
+
+            string sql1 = "SELECT COUNT(*) as count FROM [Plan]";
+            comando = new SqlCommand(sql1, cn);
+            registros = comando.ExecuteReader();
+
+            if (registros.Read())
+            {
+
+                listaSelec = new string[int.Parse(registros["count"].ToString())];
+                cerraConexion();
+                string sql = "SELECT PolizaActual FROM [Plan]";
+                abrirConexion();
+                comando = new SqlCommand(sql, cn);
+                registros = comando.ExecuteReader();
+
+                while (registros.Read())
+                {
+                    listaSelec[x] = registros["PolizaActual"].ToString();
+                    x++;
+                }
+            }
+            return listaSelec;
+        }
+
         public string[] getListCont()
         {
             string[] listaSelec;
@@ -381,8 +410,8 @@ namespace LibbClas
                 objCont.FechaCreacion = registros["FechaCreacion"].ToString();
                 objCont.RutCliente = registros["RutCliente"].ToString();
                 objCont.CodigoPlan = registros["CodigoPlan"].ToString();
-                objCont.FechaInicioVigencia = registros[4].ToString();
-                objCont.FechaFinVigencia = registros[5].ToString();
+                objCont.FechaInicioVigencia = registros["FechaInicioVigencia"].ToString();
+                objCont.FechaFinVigencia = registros["FechaFinVigencia"].ToString();
 
                 vigente = registros[6].ToString();
                 declaracionSalud = registros[7].ToString();
@@ -395,6 +424,105 @@ namespace LibbClas
                 if (declaracionSalud == "True") {
                     objCont.DeclaracionSalud = "Presenta";
                 } else if (declaracionSalud == "False") {
+                    objCont.DeclaracionSalud = "No Presenta";
+                }
+
+                objCont.PrimaAnual = registros[8].ToString();
+                objCont.PrimaMensual = registros[9].ToString();
+                objCont.Observaciones = registros[10].ToString();
+
+                contratos.Add(objCont);
+            }
+            return contratos;
+        }
+
+        public List<Cliente> filtroClientes(string filtro)
+        {
+            clientes.Clear();
+            string sql = "SELECT * FROM Cliente WHERE "+filtro;
+            abrirConexion();
+            comando = new SqlCommand(sql, cn);
+            registros = comando.ExecuteReader();
+
+            while (registros.Read())
+            {
+                Cliente objC = new Cliente();
+                string sexo, estadoCivil;
+
+                objC.Rut = registros["RutCliente"].ToString();
+                objC.Nombre = registros["Nombres"].ToString();
+                objC.Apellido = registros["Apellidos"].ToString();
+                objC.FechaNacimiento = registros[3].ToString();
+                sexo = registros[4].ToString();
+                estadoCivil = registros[5].ToString();
+                if (sexo == "1")
+                {
+                    objC.Sexo = "Masculino";
+                }
+                else if (sexo == "2")
+                {
+                    objC.Sexo = "Femenino";
+                }
+
+                if (estadoCivil == "1")
+                {
+                    objC.EstadoCivil = "Soltero";
+                }
+                else if (estadoCivil == "2")
+                {
+                    objC.EstadoCivil = "Casado";
+                }
+                else if (estadoCivil == "3")
+                {
+                    objC.EstadoCivil = "Divorciado";
+                }
+                else if (estadoCivil == "4")
+                {
+                    objC.EstadoCivil = "Viudo";
+                }
+
+                clientes.Add(objC);
+            }
+            return clientes;
+        }
+
+        public List<Contrato> filtroContratos(string filtro)
+        {
+            contratos.Clear();
+            string sql = "SELECT * FROM Contrato WHERE "+filtro;
+            abrirConexion();
+            comando = new SqlCommand(sql, cn);
+            registros = comando.ExecuteReader();
+
+            while (registros.Read())
+            {
+                Contrato objCont = new Contrato();
+                string vigente, declaracionSalud;
+
+                objCont.NumeroContrato = registros["Numero"].ToString();
+                objCont.FechaCreacion = registros["FechaCreacion"].ToString();
+                objCont.RutCliente = registros["RutCliente"].ToString();
+                objCont.CodigoPlan = registros["CodigoPlan"].ToString();
+                objCont.FechaInicioVigencia = registros["FechaInicioVigencia"].ToString();
+                objCont.FechaFinVigencia = registros["FechaFinVigencia"].ToString();
+
+                vigente = registros[6].ToString();
+                declaracionSalud = registros[7].ToString();
+                if (vigente == "True")
+                {
+                    objCont.Vigente = "Vigente";
+                }
+                else if (vigente == "False")
+                {
+                    objCont.Vigente = "Vencido";
+                }
+
+                if (declaracionSalud == "True")
+                {
+                    objCont.DeclaracionSalud = "Presenta";
+                }
+                else if (declaracionSalud == "False")
+                {
                     objCont.DeclaracionSalud = "No Presenta";
                 }
 

@@ -115,70 +115,102 @@ namespace Inicio
             txtObsv.Clear();
         }
 
-        private void btnGuardarCont_Click(object sender, RoutedEventArgs e)
-        {
-            bool guarda = false;
-            string rutCliente = txtRutCont.Text;
+        private void btnGuardarCont_Click(object sender, RoutedEventArgs e){
+            try{
+                bool guarda = false;
+                string rutCliente = txtRutCont.Text;
 
-            DateTime localDate = DateTime.Now;
-            string mes = "", dia = "", minu = "", seg = "";
-            string anio = localDate.Year.ToString();
-            mes = localDate.Month.ToString();
-            dia = localDate.Day.ToString();
-            string hora = localDate.Hour.ToString();
-            minu = localDate.Minute.ToString();
-            seg = localDate.Second.ToString();
+                DateTime localDate = DateTime.Now;
+                string mes = "", dia = "", minu = "", seg = "";
+                string anio = localDate.Year.ToString();
+                mes = localDate.Month.ToString();
+                dia = localDate.Day.ToString();
+                string hora = localDate.Hour.ToString();
+                minu = localDate.Minute.ToString();
+                seg = localDate.Second.ToString();
 
-            if (mes.Length == 1){
-                mes = "0" + mes;
+                if (mes.Length == 1)
+                {
+                    mes = "0" + mes;
+                }
+                if (dia.Length == 1)
+                {
+                    dia = "0" + dia;
+                }
+                if (minu.Length == 1)
+                {
+                    minu = "0" + minu;
+                }
+                if (seg.Length == 1){
+                    seg = "0" + seg;
+                }
+                string numero = anio + mes + dia + hora + minu + seg;
+                string plan = cbbPlan.SelectedValue.ToString();
+                DateTime fechaIniVig = dtpFechaInicio.SelectedDate.Value;
+                DateTime fechaFinVig = fechaIniVig.AddYears(1);
+                string fechaVigencia = fechaIniVig.Year.ToString() + "-" + fechaIniVig.Month.ToString() + "-" + fechaIniVig.Day.ToString();
+                string fechaFinVigencia = fechaFinVig.Year.ToString() + "-" + fechaFinVig.Month.ToString() + "-" + fechaFinVig.Day.ToString();
+                string salud = cbbSalud.SelectedValue.ToString();
+
+                if (salud == "Si"){
+                    salud = "1";
+                }else if (salud == "No"){
+                    salud = "0";
+                }
+                else
+                {
+                    salud = "";
+                }
+                string primaAnu = txtPrimaAnu.Text;
+                string primaMen = txtPrimaMen.Text;
+                string observacion = txtObsv.Text;
+
+                objCont.RutCliente = rutCliente;
+                objCont.NumeroContrato = numero;
+                objCont.CodigoPlan = plan;
+                objCont.FechaInicioVigencia = fechaVigencia;
+                objCont.FechaFinVigencia = fechaFinVigencia;
+                objCont.DeclaracionSalud = salud;
+                objCont.PrimaAnual = primaAnu;
+                objCont.PrimaMensual = primaMen;
+                objCont.Vigente = "1";
+                objCont.Observaciones = observacion;
+
+
+                //DateTime fecha_iniv = Convert.ToDateTime(value);
+                int result = DateTime.Compare(fechaIniVig, DateTime.Today);
+                int mesV = fechaIniVig.Month - DateTime.Today.Month;
+                //if (result >= 0){
+                if (mesV < 1)
+                {
+                    guarda = objCont.agregarContrato();
+                    if (guarda == true)
+                    {
+                        MessageBox.Show("Contrato Ingresado");
+                        limpiar();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Contrato Ya Ingresado");
+                    }
+                }else{
+                    MessageBox.Show("Mes de inicio de vigencia no puede ser superior a un mes");
+                }
+               
+                guarda = objCont.agregarContrato();
+                if (guarda == true)
+                {
+                    MessageBox.Show("Contrato Ingresado");
+                    limpiar();
+                }
+                else
+                {
+                    MessageBox.Show("Contrato Ya Ingresado");
+                }
+            }catch (Exception error){
+                MessageBox.Show(error.Message);
             }
-            if (dia.Length == 1){
-                dia = "0" + dia;
-            }
-            if (minu.Length == 1){
-                minu = "0" + minu;
-            }
-            if (seg.Length == 1){
-                seg = "0" + seg;
-            }
-            string numero = anio + mes + dia + hora + minu + seg;
-            string plan = cbbPlan.SelectedValue.ToString();
-            DateTime fechaIniVig = dtpFechaInicio.SelectedDate.Value;
-            DateTime fechaFinVig = fechaIniVig.AddYears(1);
-            string fechaVigencia = fechaIniVig.Year.ToString() + "-" + fechaIniVig.Month.ToString() + "-" + fechaIniVig.Day.ToString();
-            string fechaFinVigencia = fechaFinVig.Year.ToString() + "-" + fechaFinVig.Month.ToString() + "-" + fechaFinVig.Day.ToString();
-            string salud = cbbSalud.SelectedValue.ToString();
             
-            if (salud == "Si"){
-                salud = "1";
-            }else{
-                salud = "0";
-            }
-            string primaAnu = txtPrimaAnu.Text;
-            string primaMen = txtPrimaMen.Text;
-            string observacion = txtObsv.Text;
-
-            objCont.RutCliente = rutCliente;
-            objCont.NumeroContrato = numero;
-            objCont.CodigoPlan = plan;
-            objCont.FechaInicioVigencia = fechaVigencia;
-            objCont.FechaFinVigencia = fechaFinVigencia;
-            objCont.DeclaracionSalud = salud;
-            objCont.PrimaAnual = primaAnu;
-            objCont.PrimaMensual = primaMen;
-            objCont.Vigente = "1";
-            objCont.Observaciones = observacion;
-
-            guarda = objCont.agregarContrato();
-            if (guarda == true)
-            {
-                MessageBox.Show("Contrato Ingresado");
-                limpiar();
-            }
-            else
-            {
-                MessageBox.Show("Contrato Ya Ingresado");
-            }
         }
 
         private void btnVerDatos_Click(object sender, RoutedEventArgs e)
@@ -235,6 +267,14 @@ namespace Inicio
             total = recargoBase + recargoEdad + recargoSexo + recargoEstadoC;
             txtPrimaAnu.Text = total.ToString();
             txtPrimaMen.Text = Math.Round((total / 12), 2).ToString();
+        }
+
+        private void btnListarCon_Click(object sender, RoutedEventArgs e)
+        {
+            ListadoContratos listCont = new ListadoContratos();
+            this.Hide();
+            listCont.Owner = this;
+            listCont.ShowDialog();
         }
     }
 }

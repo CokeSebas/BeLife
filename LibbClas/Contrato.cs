@@ -37,13 +37,11 @@ namespace LibbClas
 
         public string FechaCreacion
         {
-            get
-            {
+            get{
                 return _fechaCreacion;
             }
 
-            set
-            {
+            set{
                 _fechaCreacion = value;
             }
         }
@@ -57,7 +55,14 @@ namespace LibbClas
 
             set
             {
-                _rutCliente = value;
+                if (value.Length == 10)
+                {
+                    _rutCliente = value;
+                }
+                else
+                {
+                    throw new Exception("Largo rut 10");
+                }
             }
         }
 
@@ -70,7 +75,14 @@ namespace LibbClas
 
             set
             {
-                _codigoPlan = value;
+                if (value != "")
+                {
+                    _codigoPlan = value;
+                }
+                else
+                {
+                    throw new Exception("Debe seleccionar un Plan");
+                }
             }
         }
 
@@ -83,7 +95,23 @@ namespace LibbClas
 
             set
             {
-                _fechaInicioVigencia = value;
+                if (value != ""){
+                    DateTime fecha_iniv = Convert.ToDateTime(value);
+                    int result = DateTime.Compare(fecha_iniv, DateTime.Today);
+                    int mes = fecha_iniv.Month -DateTime.Today.Month;
+                    //if (result >= 0){
+                        if (mes < 1){
+                            _fechaInicioVigencia = value;
+                        }else{
+                            throw new Exception("Mes de inicio de vigencia no puede ser superior a un mes");
+                        }
+                    /*}else{
+                        throw new Exception("Inicio Vigencia no puede ser menor a la Fecha Actual");
+                    }*/
+                }else{
+                    throw new Exception("Fecha de nacimiento no puede ser vacia");
+                }
+                //_fechaInicioVigencia = value;
             }
         }
 
@@ -122,7 +150,14 @@ namespace LibbClas
 
             set
             {
-                _declaracionSalud = value;
+                if (value != "")
+                {
+                    _declaracionSalud = value;
+                }
+                else
+                {
+                    throw new Exception("Debe seleccionar si Declara Salud");
+                }
             }
         }
 

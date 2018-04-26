@@ -26,16 +26,13 @@ namespace Inicio
         public Sexo objSex = new Sexo();
         public EstadoCivil objEC = new EstadoCivil();
 
-        public addCliente()
-        {
+        public addCliente(){
             InitializeComponent();
             limpiar();
             LlenarCombo();
-
         }
 
-        private void btnLimpiarCli_Click(object sender, RoutedEventArgs e)
-        {
+        private void btnLimpiarCli_Click(object sender, RoutedEventArgs e){
             limpiar();
         }
 
