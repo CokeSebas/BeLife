@@ -94,6 +94,7 @@ namespace Inicio
 
             cbbRutCli.SelectedValue = rut;
             cbbListaContrato.SelectedValue = numero;
+            //MessageBox.Show("Numero contrato " + numero);
             dataCliente();
             buscarContrato();
 
@@ -158,10 +159,10 @@ namespace Inicio
 
         public void dataCliente()
         {
-            //cbbListaContrato.Items.Clear();
+            cbbListaContrato.Items.Clear();
             string rut = cbbRutCli.SelectedValue.ToString();
             string[] listCont = conec.listContratos(rut);
-            cbbListaContrato.SelectedIndex = 0;
+            //cbbListaContrato.SelectedIndex = 0;
             //cbbRutCli.Items.Add("Seleccione");
             for (int i = 0; i < listCont.Length; i++)
             {

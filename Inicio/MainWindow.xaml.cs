@@ -31,7 +31,7 @@ namespace Inicio
 
         public void mnSalir(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Salir");
+            //MessageBox.Show("Salir");
             App.Current.Shutdown();
         }
 
@@ -52,7 +52,7 @@ namespace Inicio
 
         public void mnEliminarCliente(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Eliminar Cliente");
+            //MessageBox.Show("Eliminar Cliente");
         }
 
 
@@ -84,12 +84,12 @@ namespace Inicio
 
         public void mnTerminarContrato(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Terminar Contrato");
+            //MessageBox.Show("Terminar Contrato");
         }
 
         public void mnEliminarContrato(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Eliminar Contrato");
+            //MessageBox.Show("Eliminar Contrato");
         }
 
         public void mnListarContrato(object sender, RoutedEventArgs e)

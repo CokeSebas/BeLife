@@ -372,7 +372,8 @@ namespace LibbClas
                 objC.Rut = registros["RutCliente"].ToString();
                 objC.Nombre = registros["Nombres"].ToString();
                 objC.Apellido = registros["Apellidos"].ToString();
-                objC.FechaNacimiento = registros[3].ToString();
+                string fecha = registros[3].ToString();
+                objC.FechaNacimiento = fecha.Substring(0, 10);
                 sexo = registros[4].ToString();
                 estadoCivil = registros[5].ToString();
                 if (sexo == "1") {
@@ -407,11 +408,14 @@ namespace LibbClas
                 string vigente, declaracionSalud;
 
                 objCont.NumeroContrato = registros["Numero"].ToString();
-                objCont.FechaCreacion = registros["FechaCreacion"].ToString();
+                string fechaCr = registros["FechaCreacion"].ToString();
+                objCont.FechaCreacion = fechaCr.Substring(0, 10);
                 objCont.RutCliente = registros["RutCliente"].ToString();
                 objCont.CodigoPlan = registros["CodigoPlan"].ToString();
-                objCont.FechaInicioVigencia = registros["FechaInicioVigencia"].ToString();
-                objCont.FechaFinVigencia = registros["FechaFinVigencia"].ToString();
+                string fechaIV = registros["FechaInicioVigencia"].ToString();
+                objCont.FechaInicioVigencia = fechaIV.Substring(0,10);
+                string fechaFV = registros["FechaFinVigencia"].ToString();
+                objCont.FechaFinVigencia = fechaFV.Substring(0, 10);
 
                 vigente = registros[6].ToString();
                 declaracionSalud = registros[7].ToString();
@@ -452,7 +456,8 @@ namespace LibbClas
                 objC.Rut = registros["RutCliente"].ToString();
                 objC.Nombre = registros["Nombres"].ToString();
                 objC.Apellido = registros["Apellidos"].ToString();
-                objC.FechaNacimiento = registros[3].ToString();
+                string fecha = registros[3].ToString();
+                objC.FechaNacimiento = fecha.Substring(0, 10);
                 sexo = registros[4].ToString();
                 estadoCivil = registros[5].ToString();
                 if (sexo == "1")
@@ -500,11 +505,14 @@ namespace LibbClas
                 string vigente, declaracionSalud;
 
                 objCont.NumeroContrato = registros["Numero"].ToString();
-                objCont.FechaCreacion = registros["FechaCreacion"].ToString();
+                string fechaCr = registros["FechaCreacion"].ToString();
+                objCont.FechaCreacion = fechaCr.Substring(0, 10);
                 objCont.RutCliente = registros["RutCliente"].ToString();
                 objCont.CodigoPlan = registros["CodigoPlan"].ToString();
-                objCont.FechaInicioVigencia = registros["FechaInicioVigencia"].ToString();
-                objCont.FechaFinVigencia = registros["FechaFinVigencia"].ToString();
+                string fechaIV = registros["FechaInicioVigencia"].ToString();
+                objCont.FechaInicioVigencia = fechaIV.Substring(0, 10);
+                string fechaFV = registros["FechaFinVigencia"].ToString();
+                objCont.FechaFinVigencia = fechaFV.Substring(0, 10);
 
                 vigente = registros[6].ToString();
                 declaracionSalud = registros[7].ToString();

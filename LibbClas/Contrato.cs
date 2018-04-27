@@ -75,7 +75,7 @@ namespace LibbClas
 
             set
             {
-                if (value != "")
+                if (value != "Seleccione")
                 {
                     _codigoPlan = value;
                 }

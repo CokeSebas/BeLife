@@ -81,6 +81,7 @@ namespace Inicio
         {
             InitializeComponent();
             listCombo();
+            dtpFechaInicio.SelectedDate = DateTime.Today;
         }
 
         public void listCombo(){
@@ -105,12 +106,16 @@ namespace Inicio
         }
 
         public void limpiar(){
+            txtNombreCliCon.Clear();
+            txtRutCont.Clear();
+            cbbPlan.SelectedIndex = 0;
+            txtPoliza.Clear();
+            dtpFechaInicio.DisplayDate = DateTime.Today;
+            dtpFechaInicio.SelectedDate = DateTime.Today;
+            cbbSalud.SelectedIndex = 0;
             txtPrimaMen.Clear();
             txtPrimaAnu.Clear();
-            cbbSalud.SelectedIndex = 0;
-            dtpFechaInicio.DisplayDate = DateTime.Today;
-            cbbPlan.SelectedIndex = 0;
-            txtObsv.Clear();
+            txtObsv.Clear();            
         }
 
         private void btnGuardarCont_Click(object sender, RoutedEventArgs e){
@@ -143,6 +148,7 @@ namespace Inicio
                     seg = "0" + seg;
                 }
                 string numero = anio + mes + dia + hora + minu + seg;
+                
                 string plan = cbbPlan.SelectedValue.ToString();
                 DateTime fechaIniVig = dtpFechaInicio.SelectedDate.Value;
                 DateTime fechaFinVig = fechaIniVig.AddYears(1);
@@ -162,6 +168,8 @@ namespace Inicio
                 string primaAnu = txtPrimaAnu.Text;
                 string primaMen = txtPrimaMen.Text;
                 string observacion = txtObsv.Text;
+
+                //MessageBox.Show("plan " + plan);
 
                 objCont.RutCliente = rutCliente;
                 objCont.NumeroContrato = numero;

@@ -30,6 +30,7 @@ namespace Inicio
             InitializeComponent();
             limpiar();
             LlenarCombo();
+            dtpFechaNacCli.SelectedDate = DateTime.Today;
         }
 
         private void btnLimpiarCli_Click(object sender, RoutedEventArgs e){
